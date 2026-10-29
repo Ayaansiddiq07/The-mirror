@@ -2000,7 +2000,7 @@
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.9</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.10</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -2016,10 +2016,10 @@
       MEMBERS: ['Member 1', 'Member 2', 'Member 3', 'Member 4'],
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
-      VOICEOVER_URL: '',
-      VERSION: '4.3.9'
+      VOICEOVER_URL: './keynote_voiceover.mp3',
+      VERSION: '4.3.10'
     };
-    const INDEX_BYTES = 149800; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 151912; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)
@@ -2453,10 +2453,61 @@
       }, duration);
     }
 
+    const VOICE_CUES = {
+      gold: './interaction_voiceover/gold-upgrade.mp3',
+      deletion: './interaction_voiceover/delete-demo.mp3',
+      kudla: [
+        './interaction_voiceover/field-note-1.mp3',
+        './interaction_voiceover/field-note-2.mp3',
+        './interaction_voiceover/field-note-3.mp3',
+        './interaction_voiceover/field-note-4.mp3',
+        './interaction_voiceover/field-note-5.mp3',
+        './interaction_voiceover/field-note-6.mp3',
+        './interaction_voiceover/field-note-7.mp3'
+      ]
+    };
+    const interactionVoicePlayers = new Map();
+    let activeInteractionVoice = null;
+
+    function stopInteractionVoice() {
+      if (!activeInteractionVoice) return;
+      activeInteractionVoice.pause();
+      activeInteractionVoice.currentTime = 0;
+      activeInteractionVoice = null;
+    }
+
+    function playInteractionVoice(url) {
+      AudioFX.init();
+      if (!AudioFX.ctx || !AudioFX.masterGain) {
+        showToast('Voice-over audio is unavailable in this browser');
+        return;
+      }
+      if (!keynoteVoiceover.paused) {
+        keynoteVoiceover.pause();
+        setKeynoteVoiceoverLabel('Resume keynote voice-over');
+      }
+      stopInteractionVoice();
+      let audio = interactionVoicePlayers.get(url);
+      if (!audio) {
+        audio = new Audio(url);
+        audio.preload = 'none';
+        const source = AudioFX.ctx.createMediaElementSource(audio);
+        const voiceGain = AudioFX.ctx.createGain();
+        voiceGain.gain.value = 3;
+        source.connect(voiceGain);
+        voiceGain.connect(AudioFX.masterGain);
+        interactionVoicePlayers.set(url, audio);
+      }
+      activeInteractionVoice = audio;
+      audio.currentTime = 0;
+      audio.play().catch(() => showToast('Voice-over could not play. Check the audio file.'));
+    }
+
     // Screen transitions
     function showScreen(screenEl) {
       const enteringMirror = screenEl === screenMirror && !screenMirror.classList.contains('active');
       if (screenEl !== screenMirror) {
+        stopInteractionVoice();
         cancelDemoDirector();
         if (keynoteOverlay.classList.contains('active')) stopKeynote();
       }
@@ -2489,6 +2540,7 @@
 
     function openRemovalModal() {
       document.getElementById('modal-bill').classList.add('active');
+      playInteractionVoice(VOICE_CUES.deletion);
     }
 
     function requestGoldUpgrade() {
@@ -2905,6 +2957,7 @@
       clearTimeout(subtitlesBanner._timer);
       subtitlesBanner._timer = setTimeout(() => { subtitlesBanner.hidden = true; }, 6500);
       showToast('Gold activated. Demo invoice: $500 · actually charged: $0.');
+      playInteractionVoice(VOICE_CUES.gold);
     }
 
     btnToggleGold.addEventListener('click', () => {
@@ -3007,18 +3060,20 @@
     btnFog.addEventListener('click', triggerFog);
 
     const KUDLA_FIELD_NOTES = [
-      'Kudla check, saar: face is free; mirror, $500.',
+      'Kudla check, saar. Face is free. Mirror, $500.',
       'Pumpwell ETA: one signal cycle. The app has selected the scenic route.',
-      'Monsoon test: 100% humidity. The mirror passed; the release notes are damp.',
+      'Monsoon test. 100% humidity. The mirror passed. The release notes are damp.',
       'Hampankatta pricing review: $500 for a reflection. Finance calls that a local market fit.',
-      'Kudla calibration: reflection unchanged, confidence invoice updated.',
-      'At Hampankatta, even this cancellation policy would need directions.',
-      'Pumpwell status: moving, technically. The download agrees.'
+      'Kudla calibration, saar. Reflection same hai. Bas confidence ka invoice update ho gaya.',
+      'At Hampankatta, saar, this cancellation policy would need directions.',
+      'Pumpwell status: chal raha hai, saar. Technically. The download agrees.'
     ];
     let kudlaNoteIndex = 0;
     function showReflectionKudlaJoke() {
-      subtitlesText.textContent = KUDLA_FIELD_NOTES[kudlaNoteIndex % KUDLA_FIELD_NOTES.length];
+      const noteIndex = kudlaNoteIndex % KUDLA_FIELD_NOTES.length;
+      subtitlesText.textContent = KUDLA_FIELD_NOTES[noteIndex];
       kudlaNoteIndex++;
+      playInteractionVoice(VOICE_CUES.kudla[noteIndex]);
       subtitlesBanner.hidden = false;
       clearTimeout(subtitlesBanner._timer);
       subtitlesBanner._timer = setTimeout(() => {
@@ -3410,6 +3465,7 @@
     }
     keynoteVoiceoverButton.addEventListener('click', async () => {
       if (!CONFIG.VOICEOVER_URL) return;
+      stopInteractionVoice();
       AudioFX.init();
       if (!AudioFX.ctx || !AudioFX.masterGain) {
         showToast('Voice-over audio is unavailable in this browser');

@@ -1,6 +1,6 @@
-// Service Worker for The Mirror v4.3.9
+// Service Worker for The Mirror v4.3.10
 
-const CACHE_NAME = 'the-mirror-v4.3.9';
+const CACHE_NAME = 'the-mirror-v4.3.10';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -9,7 +9,17 @@ const ASSETS_TO_CACHE = [
   './icons/icon-180.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/icon-maskable-512.png'
+  './icons/icon-maskable-512.png',
+  './keynote_voiceover.mp3',
+  './interaction_voiceover/gold-upgrade.mp3',
+  './interaction_voiceover/delete-demo.mp3',
+  './interaction_voiceover/field-note-1.mp3',
+  './interaction_voiceover/field-note-2.mp3',
+  './interaction_voiceover/field-note-3.mp3',
+  './interaction_voiceover/field-note-4.mp3',
+  './interaction_voiceover/field-note-5.mp3',
+  './interaction_voiceover/field-note-6.mp3',
+  './interaction_voiceover/field-note-7.mp3'
 ];
 
 self.addEventListener('install', (event) => {

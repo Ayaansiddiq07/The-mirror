@@ -2,9 +2,9 @@
 
 Replace the four member placeholders in `CONFIG.MEMBERS` before presenting. Press `N` for speaker cues. Run the keynote manually; use Auto-play only if the room needs it.
 
-For a single narration track, use [KEYNOTE_VOICEOVER.md](KEYNOTE_VOICEOVER.md). The keynote’s visible final slide no longer includes member placeholders or long credits. After generating the audio, add `assets/keynote-voiceover.mp3`, set `CONFIG.VOICEOVER_URL` to `./assets/keynote-voiceover.mp3`, and add that file to the service-worker precache to reveal the offline-ready play button.
+For the full keynote narration, use [KEYNOTE_VOICEOVER.md](KEYNOTE_VOICEOVER.md). Its generated audio is included as `keynote_voiceover.mp3` and the keynote play button is enabled. The keynote’s visible final slide no longer includes member placeholders or long credits.
 
-For one ElevenLabs recording of the Gold, delete, and all seven Kudla captions, use [INTERACTION_VOICEOVER.md](INTERACTION_VOICEOVER.md). Keep its numbered cue order and pauses so the track can be cut into matching clips later.
+The nine interaction clips (Gold, delete, and all seven Kudla cues) are included under `interaction_voiceover/` and are documented in [INTERACTION_VOICEOVER.md](INTERACTION_VOICEOVER.md).
 
 | Time / slide | Speaker | Talk track |
 |---|---|---|

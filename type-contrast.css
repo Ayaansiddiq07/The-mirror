@@ -1,0 +1,25 @@
+/* Projection-first type: high contrast and readable even when web fonts are offline. */
+:root{--sans:'Segoe UI Variable Display','Segoe UI',Arial,sans-serif;--serif:Georgia,'Times New Roman',serif;--mono:'Cascadia Mono',Consolas,monospace}
+.top-meta,.notes-toggle{color:#d2d0ca}
+.notes-toggle{font-size:10px}
+.eyebrow{font-size:10px;color:#e0ded8;letter-spacing:.18em}
+.opening-copy h1,.reveal-copy h2,.demo-copy h2,.pricing-heading h2,.closing-left h2{font-weight:600;color:#fff}
+.opening-copy h1 em,.reveal-copy h2 em,.demo-copy h2 em,.pricing-heading h2 em,.closing-left h2 em{color:#d4d2cc}
+.opening-subline,.scene-label,.scene-footnote{color:#d0cec8}
+.reveal-deck,.demo-intro,.pricing-heading>p:not(.eyebrow):not(.speaker-line){color:#d0cec9;font-size:15px}
+.spec-list>div{color:#f0efe9;font-size:10px}
+.spec-list>div span:first-child,.spec-list>div span:last-child{color:#c3c1bb}
+.speaker-line b{color:#fff;font-size:11px}
+.speaker-line small{color:#bdbbb5;font-size:9px}
+.mode-button{font-size:11px}.mode-button small{font-size:9px;color:#aaa9a2}.mode-button>span{font-size:9px;color:#aaa9a2}
+.camera-button b{font-size:11px}.camera-button small,.fallback-message{font-size:9px;color:#c1bfb9}
+.plan-head{font-size:9px;color:#c8c6bf}.gold-card .plan-head{color:#4f4e49}
+.price-card>p{font-size:10px;color:#c0beb8}.gold-card>p{color:#55544f}
+.price-card ul{font-size:9px;color:#e0ded8}.gold-card ul{color:#41403b}
+.plan-cta{font-size:8px}.fictional-disclaimer{font-size:8px;color:#cfcdc6;line-height:1.7}
+.closing-statement p{color:#f1efe9}.closing-statement p:last-child{color:#bbb9b2}
+.closing-credits span{color:#b9b7b0;font-size:8px}.closing-credits b{font-size:9px;color:#f5f4ee}
+.film-caption{font-size:9px;color:#fff}.film-time{color:#e0ded8}
+.chapter-label{color:#dedcd5}.runtime{color:#c6c4bd}
+.speaker-notes{color:#141414}.speaker-notes b{font-size:10px}.speaker-notes p{font-size:12px;color:#30302d}
+@media(max-width:700px){.reveal-deck,.demo-intro,.pricing-heading>p:not(.eyebrow):not(.speaker-line){font-size:12px}.price-card>p{font-size:8px}.price-card ul{font-size:7px}.plan-cta{font-size:6px}.fictional-disclaimer{font-size:6px}}

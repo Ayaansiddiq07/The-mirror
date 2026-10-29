@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#333633"/><stop offset=".45" stop-color="#101211"/><stop offset="1" stop-color="#050606"/></linearGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="matrix(530 80 -80 530 560 390)" gradientUnits="userSpaceOnUse"><stop stop-color="#f0f1e9" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="rip" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f0f0e9" stop-opacity=".55"/><stop offset=".32" stop-color="#c1c4bd" stop-opacity=".12"/><stop offset=".8" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="17"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="4"/></filter>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1600v900H0z"/><path fill="url(#light)" d="M0 0h1600v900H0z"/>
+  <path d="M0 350c185-42 259 34 429 0s255-73 419-17 248 29 374-4 211-65 378-13" stroke="url(#rip)" stroke-width="11" opacity=".43" filter="url(#blur)"/>
+  <g stroke="url(#rip)" stroke-linecap="round" opacity=".45">
+    <path d="M54 424c126-21 220-14 320 1s220 17 350-8 242-13 366 6 272 14 448-21" stroke-width="2"/>
+    <path d="M0 478c155-29 251 11 405 13s244-24 355-26 239 27 352 14 317-21 488 7" stroke-width="5"/>
+    <path d="M98 531c95-10 185 12 294 7s207-33 329-24 201 30 320 21 278-8 424 7" stroke-width="2"/>
+    <path d="M0 602c156 5 243-27 373-10s238 37 378 14 243-23 362 2 295 20 487-10" stroke-width="8"/>
+    <path d="M143 659c91-23 222-5 346 11s229 7 333-12 229-20 342 0 237 13 337-5" stroke-width="2"/>
+    <path d="M0 715c149-34 252 3 405 10s257-12 379-19 215 18 339 20 296-1 477-33" stroke-width="5"/>
+    <path d="M80 772c171-19 245 1 367 15s205 3 347-18 241 5 373 11 248-2 433-21" stroke-width="2"/>
+  </g>
+  <g fill="#f1f2ea" opacity=".56" filter="url(#soft)"><ellipse cx="478" cy="487" rx="81" ry="5"/><ellipse cx="1025" cy="583" rx="98" ry="4"/><ellipse cx="766" cy="688" rx="132" ry="4"/><ellipse cx="1217" cy="442" rx="58" ry="4"/></g>
+  <path d="M0 378c191 22 311-39 480-8 173 31 292 29 439-2 174-36 314 30 441 1s148-21 240-35" stroke="#fff" stroke-opacity=".17" stroke-width="1"/>
+  <path fill="#000" fill-opacity=".25" d="M0 0h1600v900H0z"/>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "name": "the-mirror",
+  "version": "4.2.2",
+  "private": true,
+  "description": "Precision Optical Instrument - Brutalist PWA Mirror",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["mirror", "pwa", "optics", "brutalist"],
+  "author": "",
+  "license": "MIT"
+}
+

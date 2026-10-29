@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+  <title id="title">QR code pending deployment</title>
+  <desc id="desc">Replace this placeholder with a QR code after the Vercel deployment URL is available.</desc>
+  <rect width="220" height="220" fill="#f5f5f5"/>
+  <rect x="12" y="12" width="196" height="196" fill="none" stroke="#111" stroke-width="2"/>
+  <text x="110" y="98" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#111">DEPLOY URL</text>
+  <text x="110" y="120" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#111">PENDING</text>
+</svg>

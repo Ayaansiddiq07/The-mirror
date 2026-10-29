@@ -1,0 +1,16 @@
+.modal-scrim{position:fixed;z-index:30;inset:0;display:grid;place-items:center;padding:20px;background:#000b;backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.modal-scrim.open{opacity:1;visibility:visible}
+.deletion-card{position:relative;width:min(460px,100%);padding:clamp(27px,5vw,46px);border:1px solid #55554f;background:#111;color:#f3f1ea;box-shadow:0 32px 120px #000}
+.dismiss-dialog{position:absolute;right:15px;top:13px;border:0;background:none;color:#aaa;font-size:23px;cursor:pointer;width:36px;height:36px}
+.deletion-card .eyebrow{margin-top:8px}
+.deletion-card h2{font-size:clamp(38px,7vw,58px);font-weight:500;letter-spacing:-.07em;line-height:1;margin:0 0 28px}
+.deletion-card h2 em{font-family:var(--serif);font-weight:500;color:#aaa}
+.deletion-price{font-size:34px;letter-spacing:-.06em;border-top:1px solid #444;padding-top:19px}
+.deletion-price span{font:9px var(--mono);letter-spacing:0;color:#999}
+.deletion-disclaimer{font:9px/1.7 var(--mono);color:#aaa;max-width:300px}
+.dialog-actions{display:flex;gap:9px;margin-top:23px}
+.dialog-actions button{flex:1;min-height:42px;padding:9px;border:1px solid #64645e;background:transparent;color:#eee;font:8px var(--mono);letter-spacing:.05em;cursor:pointer}
+.dialog-actions button:hover{background:#eee;color:#111}
+.dialog-actions .free-dialog-action{background:#eee;color:#111;border-color:#eee;display:flex;justify-content:space-between;align-items:center;padding:9px 12px}
+.dialog-actions .free-dialog-action:hover{background:#c8c6bf}
+@media(max-width:700px){.deletion-card{padding:28px 23px}.deletion-card h2{font-size:42px}.dialog-actions{flex-direction:column}}

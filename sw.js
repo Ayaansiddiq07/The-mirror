@@ -1,6 +1,6 @@
-// Service Worker for The Mirror v4.3.11
+// Service Worker for The Mirror v4.3.12
 
-const CACHE_NAME = 'the-mirror-v4.3.11';
+const CACHE_NAME = 'the-mirror-v4.3.12';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -19,7 +19,48 @@ const ASSETS_TO_CACHE = [
   './interaction_voiceover/field-note-4.mp3',
   './interaction_voiceover/field-note-5.mp3',
   './interaction_voiceover/field-note-6.mp3',
-  './interaction_voiceover/field-note-7.mp3'
+  './interaction_voiceover/field-note-7.mp3',
+  './music-clips/light-control.mp3',
+  './music-clips/clarity-control.mp3',
+  './music-clips/zoom-control.mp3',
+  './music-clips/freeze-control.mp3',
+  './music-clips/camera-flip.mp3',
+  './music-clips/frame-shape.mp3',
+  './music-clips/lab-toggle.mp3',
+  './music-clips/silver-return.mp3',
+  './music-clips/fog.mp3',
+  './music-clips/fly-release.mp3',
+  './music-clips/fly-swat.mp3',
+  './music-clips/fly-respawn.mp3',
+  './music-clips/caliper.mp3',
+  './music-clips/deal-mode.mp3',
+  './music-clips/disguise.mp3',
+  './music-clips/voice-ai.mp3',
+  './music-clips/stare-start.mp3',
+  './music-clips/stare-25-seconds.mp3',
+  './music-clips/stare-end.mp3',
+  './music-clips/true-view.mp3',
+  './music-clips/dial-up.mp3',
+  './music-clips/thermal.mp3',
+  './music-clips/battery-low.mp3',
+  './music-clips/battery-charged.mp3',
+  './music-clips/vanish.mp3',
+  './music-clips/wobbly.mp3',
+  './music-clips/hype.mp3',
+  './music-clips/glass-crack.mp3',
+  './music-clips/glass-repair.mp3',
+  './music-clips/quantum-dust.mp3',
+  './music-clips/keynote-quote-01.mp3',
+  './music-clips/keynote-quote-02.mp3',
+  './music-clips/keynote-quote-03.mp3',
+  './music-clips/keynote-quote-04.mp3',
+  './music-clips/keynote-quote-05.mp3',
+  './music-clips/keynote-quote-06.mp3',
+  './music-clips/keynote-quote-07.mp3',
+  './music-clips/keynote-quote-08.mp3',
+  './music-clips/keynote-quote-09.mp3',
+  './music-clips/keynote-quote-10.mp3',
+  './music-clips/keynote-quote-11.mp3'
 ];
 
 self.addEventListener('install', (event) => {

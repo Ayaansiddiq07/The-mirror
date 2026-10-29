@@ -6,7 +6,7 @@ For the full keynote narration, use [KEYNOTE_VOICEOVER.md](KEYNOTE_VOICEOVER.md)
 
 The nine interaction clips (Gold, delete, and all seven Kudla cues) are included under `interaction_voiceover/` and are documented in [INTERACTION_VOICEOVER.md](INTERACTION_VOICEOVER.md).
 
-For Hindi/Hinglish voice cues for the remaining mirror controls and Absurd Lab features, use [FEATURE_VOICEOVER.md](FEATURE_VOICEOVER.md). The named clips are a recording/cut map; those new clips are not wired until the generated audio is supplied.
+The 41 supplied Hindi/Hinglish clips for the mirror controls, Absurd Lab features, and rotating Keynote quotes live in `music-clips/` and are wired to their matching interactions. See [FEATURE_VOICEOVER.md](FEATURE_VOICEOVER.md) for the cue map and [music-clips/timestamps.csv](music-clips/timestamps.csv) for timing and cleaned captions.
 
 | Time / slide | Speaker | Talk track |
 |---|---|---|

@@ -2000,7 +2000,7 @@
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.11</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.12</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -2017,9 +2017,9 @@
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
       VOICEOVER_URL: './keynote_voiceover.mp3',
-      VERSION: '4.3.11'
+      VERSION: '4.3.12'
     };
-    const INDEX_BYTES = 152973; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 157336; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)
@@ -2027,6 +2027,7 @@
     const AudioFX = {
       ctx: null,
       masterGain: null,
+      effectsGain: null,
       compressor: null,
       init() {
         if (!this.ctx) {
@@ -2035,6 +2036,8 @@
             this.ctx = new AC();
             this.masterGain = this.ctx.createGain();
             this.masterGain.gain.value = 0.05;
+            this.effectsGain = this.ctx.createGain();
+            this.effectsGain.gain.value = 1;
             this.compressor = this.ctx.createDynamicsCompressor();
             this.compressor.threshold.value = -18;
             this.compressor.knee.value = 0;
@@ -2042,6 +2045,7 @@
             this.compressor.attack.value = 0.003;
             this.compressor.release.value = 0.15;
             this.masterGain.connect(this.compressor);
+            this.effectsGain.connect(this.masterGain);
             this.compressor.connect(this.ctx.destination);
           }
         }
@@ -2055,6 +2059,12 @@
         return this.ctx.resume()
           .then(() => this.ctx.state === 'running')
           .catch(() => false);
+      },
+      duckEffectsForVoice(active) {
+        if (!this.ctx || !this.effectsGain) return;
+        const now = this.ctx.currentTime;
+        this.effectsGain.gain.cancelScheduledValues(now);
+        this.effectsGain.gain.setTargetAtTime(active ? 0.12 : 1, now, 0.04);
       },
       // Celestial Apple Chime chord
       chime(tier = 1) {
@@ -2073,7 +2083,7 @@
           gain.gain.linearRampToValueAtTime(0.12, now + i * 0.07 + 0.04);
           gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.07 + 1.5);
           osc.connect(gain);
-          gain.connect(this.masterGain);
+          gain.connect(this.effectsGain);
           osc.start(now + i * 0.07);
           osc.stop(now + i * 0.07 + 1.6);
         });
@@ -2101,7 +2111,7 @@
         gain.gain.exponentialRampToValueAtTime(0.001, now + 1.3);
         noise.connect(filter);
         filter.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         noise.start(now);
       },
       // Glass wipe squeak
@@ -2118,7 +2128,7 @@
         gain.gain.setValueAtTime(0.04, now);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         osc.start(now);
         osc.stop(now + 0.09);
       },
@@ -2136,7 +2146,7 @@
         gain.gain.linearRampToValueAtTime(0.08, now + 0.05);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         osc.start(now);
         osc.stop(now + 0.42);
       },
@@ -2157,7 +2167,7 @@
         gain.gain.setValueAtTime(0.3, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
         noise.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         noise.start(now);
       },
       // 8-bit retro sunglasses drop bass thud
@@ -2173,7 +2183,7 @@
         gain.gain.setValueAtTime(0.18, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         osc.start(now);
         osc.stop(now + 0.46);
       },
@@ -2190,7 +2200,7 @@
           gain.gain.setValueAtTime(0.15, now + i * 0.1);
           gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.1 + 0.6);
           osc.connect(gain);
-          gain.connect(this.masterGain);
+          gain.connect(this.effectsGain);
           osc.start(now + i * 0.1);
           osc.stop(now + i * 0.1 + 0.65);
         });
@@ -2209,7 +2219,7 @@
         gain.gain.setValueAtTime(0.12, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         osc.start(now);
         osc.stop(now + 0.42);
       },
@@ -2234,7 +2244,7 @@
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
         noise.connect(filter);
         filter.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         noise.start(now);
       },
       // Stadium standing ovation
@@ -2251,7 +2261,7 @@
           gain.gain.setValueAtTime(0.07 + Math.random() * 0.06, t);
           gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
           osc.connect(gain);
-          gain.connect(this.masterGain);
+          gain.connect(this.effectsGain);
           osc.start(t);
           osc.stop(t + 0.07);
         }
@@ -2269,7 +2279,7 @@
         gain.gain.setValueAtTime(0.12, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.effectsGain);
         osc.start(now);
         osc.stop(now + 0.4);
       }
@@ -2471,7 +2481,40 @@
         './interaction_voiceover/field-note-5.mp3',
         './interaction_voiceover/field-note-6.mp3',
         './interaction_voiceover/field-note-7.mp3'
-      ]
+      ],
+      features: {
+        lighting: './music-clips/light-control.mp3',
+        clarity: './music-clips/clarity-control.mp3',
+        zoom: './music-clips/zoom-control.mp3',
+        freeze: './music-clips/freeze-control.mp3',
+        flip: './music-clips/camera-flip.mp3',
+        shape: './music-clips/frame-shape.mp3',
+        absurd: './music-clips/lab-toggle.mp3',
+        silver: './music-clips/silver-return.mp3',
+        fog: './music-clips/fog.mp3',
+        flyRelease: './music-clips/fly-release.mp3',
+        flySwat: './music-clips/fly-swat.mp3',
+        flyRespawn: './music-clips/fly-respawn.mp3',
+        caliper: './music-clips/caliper.mp3',
+        deal: './music-clips/deal-mode.mp3',
+        disguise: './music-clips/disguise.mp3',
+        voice: './music-clips/voice-ai.mp3',
+        stareStart: './music-clips/stare-start.mp3',
+        stare25: './music-clips/stare-25-seconds.mp3',
+        stareEnd: './music-clips/stare-end.mp3',
+        trueView: './music-clips/true-view.mp3',
+        dialUp: './music-clips/dial-up.mp3',
+        thermal: './music-clips/thermal.mp3',
+        batteryLow: './music-clips/battery-low.mp3',
+        batteryCharged: './music-clips/battery-charged.mp3',
+        vanish: './music-clips/vanish.mp3',
+        wobbly: './music-clips/wobbly.mp3',
+        hype: './music-clips/hype.mp3',
+        crack: './music-clips/glass-crack.mp3',
+        repair: './music-clips/glass-repair.mp3',
+        quantumDust: './music-clips/quantum-dust.mp3',
+        keynoteQuotes: Array.from({ length: 11 }, (_, i) => `./music-clips/keynote-quote-${String(i + 1).padStart(2, '0')}.mp3`)
+      }
     };
     const interactionVoicePlayers = new Map();
     const voiceElementGraphs = new WeakMap();
@@ -2502,9 +2545,11 @@
       activeInteractionVoice.pause();
       activeInteractionVoice.currentTime = 0;
       activeInteractionVoice = null;
+      AudioFX.duckEffectsForVoice(false);
     }
 
     function playInteractionVoice(url) {
+      AudioFX.init();
       if (!keynoteVoiceover.paused) {
         keynoteVoiceover.pause();
         setKeynoteVoiceoverLabel('Resume keynote voice-over');
@@ -2514,18 +2559,40 @@
       if (!audio) {
         audio = new Audio(url);
         audio.preload = 'none';
+        audio.addEventListener('ended', () => {
+          if (activeInteractionVoice === audio) {
+            activeInteractionVoice = null;
+            AudioFX.duckEffectsForVoice(false);
+          }
+        });
         interactionVoicePlayers.set(url, audio);
       }
       const audioReady = prepareVoiceElement(audio);
       activeInteractionVoice = audio;
+      AudioFX.duckEffectsForVoice(true);
       audio.currentTime = 0;
       const playback = audio.play();
       Promise.all([audioReady, playback]).then(([contextReady]) => {
         if (!contextReady) {
           audio.pause();
+          if (activeInteractionVoice === audio) {
+            activeInteractionVoice = null;
+            AudioFX.duckEffectsForVoice(false);
+          }
           showToast('Voice-over audio is unavailable in this browser');
         }
-      }).catch(() => showToast('Voice-over could not play. Check the audio file.'));
+      }).catch(() => {
+        if (activeInteractionVoice === audio) {
+          activeInteractionVoice = null;
+          AudioFX.duckEffectsForVoice(false);
+        }
+        showToast('Voice-over could not play. Check the audio file.');
+      });
+    }
+
+    function playFeatureVoice(cue) {
+      const url = VOICE_CUES.features[cue];
+      if (url) playInteractionVoice(url);
     }
 
     // Screen transitions
@@ -2860,6 +2927,7 @@
       }
       labelLighting.textContent = state.lightingMode === 0 ? 'Light' : mode.name.split(' ')[0];
       showToast(mode.desc);
+      playFeatureVoice('lighting');
     }
     btnLighting.addEventListener('click', cycleLighting);
 
@@ -2874,6 +2942,7 @@
         btnClarity.classList.remove('active');
         showToast('Natural optics restored');
       }
+      playFeatureVoice('clarity');
     }
     btnClarity.addEventListener('click', toggleClarity);
 
@@ -2891,6 +2960,7 @@
         btnZoom.classList.remove('active');
         showToast('1× Native Viewport');
       }
+      playFeatureVoice('zoom');
     }
     btnZoom.addEventListener('click', toggleZoom);
 
@@ -2921,6 +2991,7 @@
         labelFreeze.textContent = 'Freeze';
         showToast('Resumed live reflection');
       }
+      playFeatureVoice('freeze');
     }
     btnFreeze.addEventListener('click', toggleFreeze);
 
@@ -2933,6 +3004,7 @@
         cameraVideo.classList.remove('rear-camera');
         showToast('Switched to Front Mirror Camera');
       }
+      playFeatureVoice('flip');
       await startCamera();
     }
     btnFlip.addEventListener('click', flipCamera);
@@ -2946,6 +3018,7 @@
       mirrorViewport.classList.add('frame-' + state.shape);
       const names = { arched: 'Signature Arched', oval: 'Classic Oval', full: 'Precision Viewport' };
       showToast(names[state.shape] + ' frame');
+      playFeatureVoice('shape');
     }
     btnShape.addEventListener('click', cycleShape);
 
@@ -2987,7 +3060,7 @@
 
     btnToggleGold.addEventListener('click', () => {
       if (state.tierIndex === 0) requestGoldUpgrade();
-      else { state.tierIndex = 0; updateTierUI(); }
+      else { state.tierIndex = 0; updateTierUI(); playFeatureVoice('silver'); }
     });
     document.getElementById('btn-confirm-gold').addEventListener('click', confirmGoldUpgrade);
     document.getElementById('btn-cancel-gold').addEventListener('click', () => modalGoldUpgrade.classList.remove('active'));
@@ -2999,6 +3072,7 @@
     btnRevertSilver.addEventListener('click', () => {
       state.tierIndex = 0;
       updateTierUI();
+      playFeatureVoice('silver');
     });
 
     // ============================================================
@@ -3012,6 +3086,7 @@
       if (isHidden) {
         showToast(' Absurd Lab unlocked: 16 useless experimental optics');
       }
+      playFeatureVoice('absurd');
     });
 
     // 1. Hot Shower Steam Simulation & Interactive Wipe
@@ -3036,6 +3111,7 @@
 
       fogCanvas.hidden = false;
       AudioFX.steam();
+      playFeatureVoice('fog');
       showToast('Monsoon humidity test active. Drag cursor or finger to wipe the virtual mirror.');
     }
 
@@ -3134,10 +3210,12 @@
       e.stopPropagation();
       AudioFX.swat();
       glassFly.hidden = true;
+      playFeatureVoice('flySwat');
       showToast(' RIP Gerald the Fly. 2026-2026. Smashed on optical glass.');
       setTimeout(() => {
         glassFly.hidden = false;
         moveFlyRandomly();
+        playFeatureVoice('flyRespawn');
         showToast('The fly has respawned to inspect the glass.');
       }, 5000);
     });
@@ -3145,6 +3223,7 @@
     btnFly.addEventListener('click', () => {
       glassFly.hidden = false;
       moveFlyRandomly();
+      playFeatureVoice('flyRelease');
       showToast(' Housefly released on optical glass.');
     });
 
@@ -3156,6 +3235,7 @@
       if (state.isCaliperActive) {
         AudioFX.chime(2);
         showToast('Golden Ratio Calipers: frame alignment deviation 61.4%.');
+        playFeatureVoice('caliper');
       } else {
         showToast('Technical calipers dismissed');
       }
@@ -3173,6 +3253,7 @@
         dealWithIt.classList.remove('active');
         showToast('Shades removed');
       }
+      playFeatureVoice('deal');
     });
 
     // 5. Disguise Studio (Mustache / Monocle / Censored / Clown)
@@ -3192,13 +3273,15 @@
       ];
       AudioFX.chime(1);
       showToast(msgs[state.disguiseIndex]);
+      playFeatureVoice('disguise');
     });
 
-    // 6. Caption-only voice gag; system speech output is intentionally disabled.
+    // 6. Prerecorded voice gag; browser speech output remains disabled.
     btnVoice.addEventListener('click', () => {
-      subtitlesText.textContent = 'The company has muted its keynote voiceover.';
+      subtitlesText.textContent = 'Company ne Voice AI ko mute bola tha. Ab prerecorded voice aa gaya; finance is still listening.';
       subtitlesBanner.hidden = false;
-      showToast('Voiceover muted. The caption remains.');
+      showToast('The company has queued a prerecorded voice-over.');
+      playFeatureVoice('voice');
     });
 
     // 7. Staring Contest Mode
@@ -3206,17 +3289,20 @@
     let stareCount = 0;
 
     function startStaringContest() {
+      clearInterval(stareInterval);
       state.isStaringContest = true;
       stareCount = 0;
       stareTimerEl.textContent = '00:00';
       stareOverlay.hidden = false;
       showToast(' Staring contest began! Do not blink!');
+      playFeatureVoice('stareStart');
 
       stareInterval = setInterval(() => {
         stareCount++;
         stareTimerEl.textContent = formatTime(stareCount);
         if (stareCount === 25) {
           showToast('Mirror has never blinked in its entire operational lifespan.');
+          playFeatureVoice('stare25');
         }
       }, 1000);
     }
@@ -3227,6 +3313,7 @@
       state.isStaringContest = false;
       AudioFX.buzzer();
       showToast(' Defeated by your reflection in ' + stareCount + 's! Mirror remains undefeated.');
+      playFeatureVoice('stareEnd');
     }
 
     btnStare.addEventListener('click', startStaringContest);
@@ -3242,6 +3329,7 @@
       } else {
         showToast('Pleasant illusion restored: Standard horizontal mirror active');
       }
+      playFeatureVoice('trueView');
     }
     btnTrueMirror.addEventListener('click', toggleTrueMirror);
 
@@ -3305,6 +3393,7 @@
       } else {
         startDialUp();
       }
+      playFeatureVoice('dialUp');
     });
 
     // 10. Predator Thermal Heat Vision
@@ -3318,6 +3407,7 @@
       } else {
         showToast('Thermal optics deactivated');
       }
+      playFeatureVoice('thermal');
     });
 
     // 11. Low Battery Simulation (1%)
@@ -3326,6 +3416,7 @@
       cameraVideo.style.filter = 'brightness(0.3) contrast(0.8)';
       AudioFX.buzzer();
       showToast(' Warning: Mirror Battery 1%! Plug into wall outlet immediately!');
+      playFeatureVoice('batteryLow');
     });
 
     btnPlugIn.addEventListener('click', () => {
@@ -3333,6 +3424,7 @@
       cameraVideo.style.filter = '';
       AudioFX.chime(2);
       showToast(' Mirror connected to 240V AC power. Reflection fully charged!');
+      playFeatureVoice('batteryCharged');
     });
 
     // 12. Vampire Vanish Mode
@@ -3346,6 +3438,7 @@
       } else {
         showToast('Mortal reflection restored');
       }
+      playFeatureVoice('vanish');
     });
 
     // 13. Liquid Wobbly Optics (Gelatin Mode)
@@ -3359,6 +3452,7 @@
       } else {
         showToast('Solid optical glass restored');
       }
+      playFeatureVoice('wobbly');
     });
 
     // 14. Standing Ovation / Hype Button
@@ -3381,6 +3475,7 @@
       AudioFX.applause();
       triggerConfetti();
       showToast('The product company has simulated an ovation for its launch.');
+      playFeatureVoice('hype');
     });
 
     // 15. Accidental Glass Crack ($849 Genius Bar repair)
@@ -3390,6 +3485,7 @@
       repairGlassCard.hidden = false;
       AudioFX.crack();
       showToast(' Physical glass fracture! Estimated repair fee: $849.00');
+      playFeatureVoice('crack');
     }
 
     function repairCrack() {
@@ -3398,6 +3494,7 @@
       repairGlassCard.hidden = true;
       AudioFX.chime(1);
       showToast('The polishing cloth restored the virtual glass.');
+      playFeatureVoice('repair');
     }
 
     btnCrack.addEventListener('click', triggerCrack);
@@ -3428,31 +3525,33 @@
       dustParticle.style.right = right + '%';
       showToast(' Quantum dust particle escaped your touch. Polishing cloth required.');
     }
-    dustParticle.addEventListener('click', (e) => { e.stopPropagation(); moveDust(); });
+    dustParticle.addEventListener('click', (e) => { e.stopPropagation(); moveDust(); playFeatureVoice('quantumDust'); });
     dustParticle.addEventListener('mouseenter', moveDust);
 
     // 16. Keynote AI Deadpan Quotes
     const KEYNOTE_QUOTES = [
-      "The Mirror is pleased to reflect itself today.",
-      "100% organic carbon-based symmetry. Rendered natively at 120 FPS.",
-      "Our most courageous reflection yet.",
-      "Zero product defects detected in the reflection pipeline.",
-      "We spent $4.2B in R&D to align the virtual bezel.",
-      "A revolutionary breakthrough in vanity.",
-      "Can you believe bathroom mirrors used to be made of glass for free?",
-      "Pumpwell traffic: the buffering circle has moved three metres. The download calls this momentum.",
-      "Monsoon report: humidity is free. Our premium fog filter is $500.",
-      "Hampankatta pricing: $500 for a reflection. Finance says the decimal point is a future feature.",
-      "Kudla field report: the reflection is local; the invoice is internationally ambitious."
+      'Aaj The Mirror khud ko reflect karke bahut khush hai.',
+      'Sau percent organic carbon symmetry. One-twenty FPS pe render; vanity ka license alag.',
+      'Ab tak ka sabse courageous reflection. Mirror khud apni tareef se impressed hai.',
+      'Reflection pipeline mein zero defects mile. Quality team ab khud ko review kar rahi hai.',
+      'Virtual bezel align karne mein four point two billion dollars R and D. Ruler se verify kiya.',
+      'Vanity ke field mein revolutionary breakthrough. Bathroom mirror ne comment dene se mana kiya.',
+      'Socho, bathroom mirrors pehle free glass ke bante the. Kya zamana tha.',
+      'Pumpwell traffic: buffering circle teen metre aage gaya. Download isko momentum bolta hai.',
+      'Monsoon report: humidity free hai. Premium fog filter paanch sau dollar.',
+      'Hampankatta pricing: reflection paanch sau dollar. Finance bolta hai decimal point future feature hai.',
+      'Kudla field report: reflection local hai; invoice internationally ambitious.'
     ];
 
     let keynoteIdx = 0;
     btnRoast.addEventListener('click', () => {
-      const quote = KEYNOTE_QUOTES[keynoteIdx % KEYNOTE_QUOTES.length];
+      const quoteIndex = keynoteIdx % KEYNOTE_QUOTES.length;
+      const quote = KEYNOTE_QUOTES[quoteIndex];
       keynoteIdx++;
       subtitlesText.textContent = quote;
       subtitlesBanner.hidden = false;
       AudioFX.chime(1);
+      playInteractionVoice(VOICE_CUES.features.keynoteQuotes[quoteIndex]);
       clearTimeout(subtitlesBanner._timer);
       subtitlesBanner._timer = setTimeout(() => {
         subtitlesBanner.hidden = true;
@@ -3579,7 +3678,7 @@
       const action = event.target.closest('[data-keynote-action]')?.dataset.keynoteAction;
       if (action === 'edition') {
         if (state.tierIndex === 0) requestGoldUpgrade();
-        else { state.tierIndex = 0; updateTierUI(); }
+        else { state.tierIndex = 0; updateTierUI(); playFeatureVoice('silver'); }
       }
       if (action === 'update') skipTwoMonths();
       if (action === 'delete') openRemovalModal();

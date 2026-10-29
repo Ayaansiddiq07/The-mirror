@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Wired all 41 supplied feature and keynote quote clips to their matching controls and timed events. Playback replaces the prior cue, ducks sound effects beneath speech, and is precached for offline use; keynote quote captions now match the supplied Hinglish recordings.
+- Updated the app and service-worker cache version to v4.3.12.
 - Replaced the 60-second walkthrough with a 3-minute manual-first keynote, keyboard/swipe navigation, hidden speaker notes (`N`), visible elapsed time, and cancellable auto-play.
 - Added a theatrical $500 demo checkout before the fake 25 GB download. It collects no card data and charges $0; the simulated download remains skippable and capped at 18 seconds.
 - Fixed Silver to show the full reflection in every frame. Gold keeps the same view with a champagne rim and an extra-photon badge.

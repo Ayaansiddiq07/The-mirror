@@ -15,7 +15,9 @@
 
 ## Verification
 
-- Pending final desktop, offline, and static checks.
+- Browser runs covered 390×844 and 1440×900 layouts, Silver/Gold, updates, removal, installer skip and 18-second completion, camera fallback and fake-camera video, the 3-minute keynote timer, and offline reload. The fake-camera run had zero console errors or warnings; the denied-camera run produced its expected permission warning.
+- Final static checks passed: inline JavaScript parsed, `node --check server.js` passed, the embedded installer size matched the 136,398-byte HTML file, release/package/service-worker versions matched at v4.2.2, and targeted privacy/stale-address checks found no issues.
+- The last Playwright CLI rerun stalled during launcher startup, so the final keynote-restart autoplay reset was verified by code inspection and static parsing, not a fresh browser run.
 
 ## Local references used
 

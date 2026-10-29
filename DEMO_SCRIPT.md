@@ -4,7 +4,7 @@ Replace the four member placeholders in `CONFIG.MEMBERS` before presenting. Pres
 
 | Time / slide | Speaker | Talk track |
 |---|---|---|
-| 0:00 · 1 | Member 1 | “This is The Mirror: a 25 GB download that shows you your own face. The $500 trial checkout is required to start the demo. The button says Pay; the receipt says zero. Finance calls that a successful conversion.” Tap Pay $500 (demo). |
+| 0:00 · 1 | Member 1 | “This is The Mirror: a 25 GB download that shows you your own face. The $500 trial checkout is required to start the demo. The button says Pay; the receipt says zero. Finance calls that a successful conversion.” Tap Pay $500 (demo), open the mirror, and let the Kudla caption land. |
 | 0:20 · 2 | Member 1 | “The actual file is about [read installer byte count] bytes. It reserves zero disk space. The other 24.99 gigabytes are our confidence interval.” |
 | 0:50 · 3 | Member 2 | “Silver shows the full reflection. Gold adds a gold rim and one extra photon. At Hampankatta, $500 buys a lot of things. Here, it buys a nicer border.” Toggle Gold, then return to Silver. |
 | 1:25 · 4 | Member 2 | “Skip two months. The version goes up by one, the download grows by ten gigabytes, and the changelog improves the left side.” Tap Skip 2 months. |

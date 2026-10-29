@@ -1,6 +1,6 @@
 {
   "name": "the-mirror",
-  "version": "4.3.4",
+  "version": "4.3.5",
   "private": true,
   "description": "Precision Optical Instrument - Brutalist PWA Mirror",
   "scripts": {

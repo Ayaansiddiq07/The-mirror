@@ -913,12 +913,12 @@
       font-size: 0.77rem;
       color: #f5f5f7;
       z-index: 26;
-      max-width: 86%;
+      width: max-content;
+      max-width: calc(100% - 16px);
       text-align: center;
+      line-height: 1.35;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+      white-space: normal;
       animation: fadeInSub 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -1956,7 +1956,7 @@
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.4</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.5</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -1972,9 +1972,9 @@
       MEMBERS: ['Member 1', 'Member 2', 'Member 3', 'Member 4'],
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
-      VERSION: '4.3.4'
+      VERSION: '4.3.5'
     };
-    const INDEX_BYTES = 142927; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 143426; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)
@@ -2409,6 +2409,7 @@
 
     // Screen transitions
     function showScreen(screenEl) {
+      const enteringMirror = screenEl === screenMirror && !screenMirror.classList.contains('active');
       if (screenEl !== screenMirror) {
         cancelDemoDirector();
         if (keynoteOverlay.classList.contains('active')) stopKeynote();
@@ -2416,6 +2417,7 @@
       [screenLaunch, screenMirror, screenGoodbye].forEach((s) => s.classList.remove('active'));
       screenEl.classList.add('active');
       btnCloseApp.hidden = (screenEl !== screenMirror);
+      if (enteringMirror) showReflectionKudlaJoke();
     }
 
     function updateReleaseDisplay() {
@@ -2937,6 +2939,7 @@
     btnFog.addEventListener('click', triggerFog);
 
     const KUDLA_FIELD_NOTES = [
+      'Kudla check, saar: face is free; mirror, $500.',
       'Pumpwell ETA: one signal cycle. The app has selected the scenic route.',
       'Monsoon test: 100% humidity. The mirror passed; the release notes are damp.',
       'Hampankatta pricing review: $500 for a reflection. Finance calls that a local market fit.',
@@ -2945,9 +2948,17 @@
       'Pumpwell status: moving, technically. The download agrees.'
     ];
     let kudlaNoteIndex = 0;
-    document.getElementById('btn-kudla').addEventListener('click', () => {
-      showToast(KUDLA_FIELD_NOTES[kudlaNoteIndex % KUDLA_FIELD_NOTES.length], 4200);
+    function showReflectionKudlaJoke() {
+      subtitlesText.textContent = KUDLA_FIELD_NOTES[kudlaNoteIndex % KUDLA_FIELD_NOTES.length];
       kudlaNoteIndex++;
+      subtitlesBanner.hidden = false;
+      clearTimeout(subtitlesBanner._timer);
+      subtitlesBanner._timer = setTimeout(() => {
+        subtitlesBanner.hidden = true;
+      }, 5000);
+    }
+    document.getElementById('btn-kudla').addEventListener('click', () => {
+      showReflectionKudlaJoke();
     });
 
     // 2. Interactive Housefly

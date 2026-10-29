@@ -126,14 +126,37 @@
     .installer-gate button, .keynote-overlay button { min-height: 42px; padding: .5rem .9rem; border: 1px solid #555; background: transparent; color: inherit; }
     .keynote-overlay { z-index: 190; display: none; place-items: center; padding: max(12px, var(--safe-top)) 12px max(12px, var(--safe-bottom)); }
     .keynote-overlay.active { display: grid; }
-    .keynote-frame { width: min(100%, calc((100dvh - 105px) * 16 / 9)); aspect-ratio: 16 / 9; max-height: calc(100dvh - 105px); position: relative; border: 1px solid #282828; background: #050505; overflow: hidden; }
-    .keynote-slide { display: none; position: absolute; inset: 0; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: clamp(18px, 5vw, 70px); }
+    .keynote-frame { width: min(100%, calc((100dvh - 140px) * 16 / 9)); aspect-ratio: 16 / 9; max-height: calc(100dvh - 140px); position: relative; border: 1px solid #282828; background: #050505; overflow: hidden; }
+    .keynote-slide { display: none; position: absolute; inset: 0; align-items: center; justify-content: safe center; flex-direction: column; text-align: center; padding: clamp(14px, 4vw, 70px); overflow-y: auto; overscroll-behavior: contain; }
     .keynote-slide.active { display: flex; }
     .keynote-slide h1, .keynote-slide h2 { font-size: clamp(2rem, 8vw, 7rem); font-weight: 450; letter-spacing: -.07em; line-height: .95; margin: 0 0 .6em; }
     .keynote-slide p { max-width: 750px; color: #aaa; font-size: clamp(.8rem, 2vw, 1.3rem); line-height: 1.5; }
     .keynote-slide .edition-accent { color: var(--edition-accent); }
-    .keynote-chrome { position: absolute; inset: auto 16px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #999; font: .72rem ui-monospace, monospace; }
+    .keynote-chrome { position: fixed; z-index: 2; left: max(12px, var(--safe-left)); right: max(12px, var(--safe-right)); bottom: max(12px, var(--safe-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #999; font: .72rem ui-monospace, monospace; }
     .keynote-actions { display: flex; align-items: center; gap: 8px; }
+    @media (max-width: 600px) {
+      .keynote-frame { width: min(calc(100vw - 24px), calc((100dvh - 190px) * 16 / 9)); max-height: calc(100dvh - 190px); }
+      .keynote-slide h1, .keynote-slide h2 { font-size: clamp(1.7rem, 8vw, 3.5rem); line-height: 1; letter-spacing: -.05em; margin-bottom: .4em; }
+      .keynote-slide p { font-size: .82rem; line-height: 1.4; }
+      .keynote-chrome { flex-wrap: wrap; justify-content: center; gap: 6px; font-size: .68rem; }
+      #keynote-clock { flex: 0 0 100%; text-align: center; }
+      .keynote-actions { width: 100%; justify-content: center; gap: 6px; }
+      .keynote-overlay .keynote-chrome button { min-height: 38px; padding: .4rem .65rem; font-size: .72rem; }
+    }
+    @media (max-height: 520px) {
+      .keynote-slide { padding: 10px 16px; }
+      .keynote-slide h1, .keynote-slide h2 { font-size: clamp(1.5rem, 5.5vw, 2.3rem); line-height: 1; margin-bottom: .3em; }
+      .keynote-slide p { font-size: .76rem; line-height: 1.3; }
+      .keynote-slide .installer-meta { font-size: .62rem; line-height: 1.3; }
+      .keynote-overlay .keynote-slide button { min-height: 34px; padding: .35rem .65rem; }
+    }
+    @media (max-width: 360px) {
+      .keynote-slide { padding: 8px; }
+      .keynote-slide h1, .keynote-slide h2 { font-size: clamp(1.25rem, 7vw, 1.5rem); letter-spacing: -.04em; }
+      .keynote-slide p { font-size: .68rem; line-height: 1.25; }
+      .keynote-slide .installer-meta { font-size: .58rem; }
+      .keynote-overlay .keynote-slide button { min-height: 32px; font-size: .7rem; }
+    }
     .keynote-notes { position: absolute; z-index: 3; top: 14px; left: 14px; right: 14px; display: none; padding: 12px; background: #eee; color: #111; font-size: .8rem; text-align: left; }
     .keynote-overlay.notes-open .keynote-notes { display: block; }
     .edition-gold { color: #111 !important; background: #d4af37 !important; }
@@ -1962,7 +1985,7 @@
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.6</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.7</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -1978,9 +2001,9 @@
       MEMBERS: ['Member 1', 'Member 2', 'Member 3', 'Member 4'],
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
-      VERSION: '4.3.6'
+      VERSION: '4.3.7'
     };
-    const INDEX_BYTES = 143702; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 145408; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)

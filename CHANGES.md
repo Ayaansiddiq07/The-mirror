@@ -14,7 +14,9 @@
 - The first Kudla joke now appears as a subtitle over the reflection as the Mirror opens; the Kudla button advances the same caption through the remaining lines.
 - Reflowed the fixed timer/ego/billing group below the header at medium-wide desktop widths to eliminate the collision visible in the screenshot; it remains hidden on compact and short screens.
 - Moved keynote navigation into a fixed bottom bar outside the slide, reserved space for it, and enabled internal scrolling on dense slides so slide actions cannot collide with navigation on portrait screens.
-- Matched the package, visible release, and service-worker cache at v4.3.7; precached the QR asset and retained activation-time eviction of older caches.
+- Removed the visible team placeholders and long privacy/tool credits from the keynote closing slide; the short closing title stays clean.
+- Added `KEYNOTE_VOICEOVER.md` with timed narration and a configurable voice-over play button. The button stays hidden until a generated audio asset is supplied; playback uses the shared gain/compressor path.
+- Matched the package, visible release, and service-worker cache at v4.3.8; precached the QR asset and retained activation-time eviction of older caches.
 - Reworked the Kudla jokes to target the product and its pricing, using six local references across Pumpwell, monsoon humidity, Hampankatta, Kudla, Bearys Institute, and MAD HACKS.
 - Removed the stale LAN IP, replaced the old QR with a marked deployment placeholder, and made the share dialog display `location.origin`.
 - Rewrote README and added this change log and a 3-minute speaker script.
@@ -25,11 +27,13 @@
 - Playwright verified the $500 demo checkout and skippable fake download, full-frame Silver video (`clip-path: none`), Gold return path, $500 delete gag with a $0 charge and free Keep action, and the two-month update transition.
 - An 11-size active-screen sweep from 320×480 to 1800×900 found no horizontal overflow, status/header collisions, header/right-control collisions, or mirror/dock collisions. In the supplied 1534×1050 layout, the status pills sit below the header. At 320×480 with the Lab open, the mirror aperture scales to 180 px with a 20 px gap above the dock.
 - At 320×568, the install guide stays inside the viewport and its close button is visible; its content scrolls internally. The delete modal fits without scrolling and has the free Keep action visible.
-- A 70-case Playwright check covering all seven slides at ten portrait, landscape, tablet, and desktop sizes found no slide/control overlap; action buttons stayed in-frame and navigation stayed within the viewport. Only the final credits slide needs internal scrolling on the smallest portrait sizes.
-- Offline reload returned The Mirror from the service-worker cache. The browser reported the standalone manifest, one active service worker, and only the v4.3.7 cache.
+- A 70-case Playwright check covering all seven slides at ten portrait, landscape, tablet, and desktop sizes found no slide/control overlap; action buttons stayed in-frame and navigation stayed within the viewport. The closing slide has since been reduced to its title, with the full narration moved to `KEYNOTE_VOICEOVER.md`.
+- At 466×605, the final slide displays only its title; member placeholders and long credits are absent. With no audio file configured, the voice-over button is hidden and the keynote runs silently.
+- Simulated the voice-over button as visible at nine sizes from 320×480 to 1440×900; the control bar stays within the viewport without horizontal overflow. Actual playback awaits the generated audio file.
+- Offline reload returned The Mirror from the service-worker cache. The browser reported the standalone manifest, one active service worker, and only the v4.3.8 cache.
 - Playwright verified the opening Kudla subtitle appears inside the reflection viewport, then the Kudla button advances to the next line.
 - Browser run covered launch, Silver/Gold switch, and delete/Keep: zero console errors or uncaught runtime errors; one expected camera-permission warning because the test browser did not grant camera access.
-- Static checks passed: inline JavaScript parsed, `node --check server.js` passed, JSON parsed, installer byte count matched the 145,408-byte HTML file, release/package/service-worker versions matched at v4.3.7, no personal-data inputs or external URLs were found, and no infinite animation runs below 0.33 seconds.
+- Static checks passed: inline JavaScript parsed, `node --check server.js` passed, JSON parsed, installer byte count matched the 147,478-byte HTML file, release/package/service-worker versions matched at v4.3.8, no personal-data inputs or external URLs were found, and no infinite animation runs below 0.33 seconds.
 
 ## Local references used
 
@@ -44,5 +48,6 @@
 - `app.js` is present but the page uses its inline script; it remains unchanged.
 - `.arena/`, `ARENA_REVIEW.md`, `APP_BUILD_PROMPT.md`, `PITCH_SCRIPT.md`, and `VIDEO_STORYBOARD.md` are existing support artifacts outside this implementation.
 - The mirror screen still contains optional experimental controls beyond the two headline editions.
+- The generated voice-over asset is pending. Add it at `assets/keynote-voiceover.mp3` and set `CONFIG.VOICEOVER_URL` to `./assets/keynote-voiceover.mp3` to enable the play control.
 - The live Vercel URL and four member names were not supplied. `CONFIG.DEPLOY_URL` and `CONFIG.MEMBERS` are editable placeholders; regenerate `qr-code.svg` after deployment.
 

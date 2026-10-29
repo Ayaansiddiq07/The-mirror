@@ -134,6 +134,7 @@
     .keynote-slide .edition-accent { color: var(--edition-accent); }
     .keynote-chrome { position: fixed; z-index: 2; left: max(12px, var(--safe-left)); right: max(12px, var(--safe-right)); bottom: max(12px, var(--safe-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #999; font: .72rem ui-monospace, monospace; }
     .keynote-actions { display: flex; align-items: center; gap: 8px; }
+    .keynote-voiceover-button { width: 42px; min-width: 42px; padding: .45rem !important; display: inline-flex; align-items: center; justify-content: center; }
     @media (max-width: 600px) {
       .keynote-frame { width: min(calc(100vw - 24px), calc((100dvh - 190px) * 16 / 9)); max-height: calc(100dvh - 190px); }
       .keynote-slide h1, .keynote-slide h2 { font-size: clamp(1.7rem, 8vw, 3.5rem); line-height: 1; letter-spacing: -.05em; margin-bottom: .4em; }
@@ -142,6 +143,7 @@
       #keynote-clock { flex: 0 0 100%; text-align: center; }
       .keynote-actions { width: 100%; justify-content: center; gap: 6px; }
       .keynote-overlay .keynote-chrome button { min-height: 38px; padding: .4rem .65rem; font-size: .72rem; }
+      .keynote-voiceover-button { width: 38px; min-width: 38px; padding: .35rem !important; }
     }
     @media (max-height: 520px) {
       .keynote-slide { padding: 10px 16px; }
@@ -1392,9 +1394,10 @@
       <div class="keynote-slide" data-keynote-slide="3"><div class="installer-meta" id="keynote-version">v4.3 · 25 GB</div><h2>Updates every two months.</h2><p id="keynote-changelog">Each update adds 10 GB.</p><button data-keynote-action="update">Skip 2 months</button></div>
       <div class="keynote-slide" data-keynote-slide="4"><div class="installer-meta">ACCOUNT CLOSURE · VERY SERIOUS DEMO CHECKOUT</div><h2>Deletion:<br>$500.</h2><p>Includes a $499 overacting surcharge. No real payment.</p><button data-keynote-action="delete">Review removal terms</button></div>
       <div class="keynote-slide" data-keynote-slide="5"><div class="installer-meta">WHY IT IS USELESS</div><h2>It reflects you.</h2><p>Glass already does this. It does not need 25 GB.</p></div>
-      <div class="keynote-slide" data-keynote-slide="6"><div class="installer-meta">WHAT WE BUILT</div><h2>Small software.<br>Large presentation.</h2><p id="keynote-credits"></p><p id="keynote-team"></p></div>
+      <div class="keynote-slide" data-keynote-slide="6"><div class="installer-meta">WHAT WE BUILT</div><h2>Small software.<br>Large presentation.</h2></div>
       <div class="keynote-notes" id="keynote-notes"></div>
-      <div class="keynote-chrome"><span id="keynote-clock">0:00 / 3:00</span><span class="keynote-actions"><button id="btn-keynote-autoplay">Auto-play: Off</button><button id="btn-keynote-next">Next →</button><button id="btn-keynote-close" aria-label="Close keynote">Close</button></span></div>
+      <div class="keynote-chrome"><span id="keynote-clock">0:00 / 3:00</span><span class="keynote-actions"><button id="btn-keynote-voiceover" class="keynote-voiceover-button" aria-label="Play keynote voice-over" title="Play keynote voice-over" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"></polygon></svg></button><button id="btn-keynote-autoplay">Auto-play: Off</button><button id="btn-keynote-next">Next →</button><button id="btn-keynote-close" aria-label="Close keynote">Close</button></span></div>
+      <audio id="keynote-voiceover" preload="none" hidden></audio>
     </div>
   </div>
 
@@ -1985,7 +1988,7 @@
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.7</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.8</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -2001,9 +2004,10 @@
       MEMBERS: ['Member 1', 'Member 2', 'Member 3', 'Member 4'],
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
-      VERSION: '4.3.7'
+      VOICEOVER_URL: '',
+      VERSION: '4.3.8'
     };
-    const INDEX_BYTES = 145408; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 147478; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)
@@ -3352,6 +3356,51 @@
     const keynoteOverlay = document.getElementById('keynote-overlay');
     const keynoteClock = document.getElementById('keynote-clock');
     const keynoteNotes = document.getElementById('keynote-notes');
+    const keynoteVoiceover = document.getElementById('keynote-voiceover');
+    const keynoteVoiceoverButton = document.getElementById('btn-keynote-voiceover');
+    let keynoteVoiceoverSource = null;
+    if (CONFIG.VOICEOVER_URL) {
+      keynoteVoiceover.src = CONFIG.VOICEOVER_URL;
+      keynoteVoiceoverButton.hidden = false;
+    }
+    function setKeynoteVoiceoverLabel(label) {
+      keynoteVoiceoverButton.setAttribute('aria-label', label);
+      keynoteVoiceoverButton.title = label;
+    }
+    function resetKeynoteVoiceover() {
+      if (!CONFIG.VOICEOVER_URL) return;
+      keynoteVoiceover.pause();
+      keynoteVoiceover.currentTime = 0;
+      setKeynoteVoiceoverLabel('Play keynote voice-over');
+    }
+    keynoteVoiceoverButton.addEventListener('click', async () => {
+      if (!CONFIG.VOICEOVER_URL) return;
+      AudioFX.init();
+      if (!AudioFX.ctx || !AudioFX.masterGain) {
+        showToast('Voice-over audio is unavailable in this browser');
+        return;
+      }
+      if (!keynoteVoiceoverSource) {
+        const voiceSource = AudioFX.ctx.createMediaElementSource(keynoteVoiceover);
+        const voiceGain = AudioFX.ctx.createGain();
+        voiceGain.gain.value = 3;
+        voiceSource.connect(voiceGain);
+        voiceGain.connect(AudioFX.masterGain);
+        keynoteVoiceoverSource = voiceSource;
+      }
+      if (keynoteVoiceover.paused) {
+        try {
+          await keynoteVoiceover.play();
+          setKeynoteVoiceoverLabel('Pause keynote voice-over');
+        } catch (_) {
+          showToast('Voice-over could not play. Check the audio file.');
+        }
+      } else {
+        keynoteVoiceover.pause();
+        setKeynoteVoiceoverLabel('Resume keynote voice-over');
+      }
+    });
+    keynoteVoiceover.addEventListener('ended', () => setKeynoteVoiceoverLabel('Play keynote voice-over'));
     let keynoteIndex = 0;
     const speakerNotes = [
       `0:00 · ${CONFIG.MEMBERS[0]} — Introduce the product and the 25 GB premise.`,
@@ -3360,7 +3409,7 @@
       `1:25 · ${CONFIG.MEMBERS[1]} — Skip two months and read the new version and size.`,
       `1:55 · ${CONFIG.MEMBERS[2]} — Show the removal fee and keep the outcome cosmetic.`,
       `2:25 · ${CONFIG.MEMBERS[2]} — Explain why a mirror app is deliberately useless.`,
-      `2:45 · ${CONFIG.MEMBERS[3]} — Name what we built, tools used, AI assistance, and team.`
+      `2:45 · ${CONFIG.MEMBERS[3]} — Name what we built, tools used, AI assistance, and team: ${CONFIG.TEAM_NAME}; ${CONFIG.MEMBERS.join(', ')}; ${CONFIG.TOOLS_USED.join(', ')}.`
     ];
     function showKeynoteSlide(index) {
       keynoteIndex = Math.max(0, Math.min(keynoteSlides.length - 1, index));
@@ -3376,6 +3425,7 @@
       cancelDemoDirector();
       clearInterval(keynoteClockTimer);
       keynoteClockTimer = null;
+      resetKeynoteVoiceover();
       const autoplay = document.getElementById('btn-keynote-autoplay');
       autoplay.dataset.running = 'false';
       autoplay.textContent = 'Auto-play: Off';
@@ -3384,6 +3434,7 @@
     function startPresentationDemo() {
       cancelDemoDirector();
       clearInterval(keynoteClockTimer);
+      resetKeynoteVoiceover();
       keynoteStartedAt = Date.now();
       keynoteClockTimer = setInterval(updateKeynoteClock, 250);
       showKeynoteSlide(0);
@@ -3566,9 +3617,6 @@
       showToast('App installed successfully');
     });
 
-    // Presentation closing credits use the editable event configuration above.
-    document.getElementById('keynote-credits').textContent = `Built with ${CONFIG.TOOLS_USED.join(', ')}. Free for this presentation. The next trial is $500; you're worth more than that. Usually, if something is free, you're the product. Here, the mirror is the product. No tracking or personal data collection.`;
-    document.getElementById('keynote-team').textContent = `${CONFIG.TEAM_NAME} · ${CONFIG.MEMBERS.join(' · ')} · Kudla · ${CONFIG.DEPLOY_URL || 'Deployment URL pending'}`;
       document.querySelector('#modal-about .modal-title').textContent = `The Mirror · v${CONFIG.VERSION}`;
     startInstallerGate();
   </script>

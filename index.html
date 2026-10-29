@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -443,13 +443,19 @@
 
     .privacy-badge {
       display: inline-flex;
+      flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
+      max-width: 100%;
       font-size: 0.74rem;
       color: var(--fg-tertiary);
       letter-spacing: 0.02em;
       text-transform: uppercase;
       font-weight: 500;
+      line-height: 1.4;
+      white-space: normal;
+      text-align: center;
       margin-top: 0.5rem;
       padding: 0.35rem 0.75rem;
       border-radius: 9999px;
@@ -1170,6 +1176,8 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1185,6 +1193,9 @@
       max-width: 420px;
       width: 100%;
       padding: 2rem;
+      max-height: calc(100dvh - 3rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.15);
       display: flex;
       flex-direction: column;
@@ -1295,17 +1306,30 @@
         transition-duration: 0.01ms !important;
       }
     }
-    @media (max-width: 600px) {
-      .launch-ambient-glow { width: min(100vw, 520px); }
+    @media (max-width: 1420px) {
       .top-left-group { display: none; }
-      #screen-mirror { padding-left: max(var(--safe-left), .75rem); padding-right: max(var(--safe-right), .75rem); }
-      .mirror-header-bar { max-width: 100%; gap: .35rem; padding-right: 78px; }
-      .header-left-pill { max-width: 36%; min-width: 0; padding: .35rem .5rem; gap: .3rem; }
+    }
+    @media (max-width: 1100px) {
+      .mirror-header-bar { max-width: 100%; flex-wrap: wrap; align-items: flex-start; gap: .5rem; padding: 0; }
+      .header-left-pill { max-width: calc(100% - 5.5rem); min-width: 0; padding: .35rem .5rem; gap: .3rem; }
       .header-left-pill .tier-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-      .mirror-header-bar > div:last-child { max-width: 63%; flex-wrap: wrap; justify-content: flex-end; gap: .25rem !important; }
+      .mirror-header-bar > div:last-child { order: 2; flex: 0 0 100%; width: 100%; max-width: 100%; margin-top: .75rem; flex-wrap: nowrap; justify-content: flex-start; gap: .25rem !important; overflow-x: auto; overscroll-behavior-x: contain; touch-action: pan-x; scrollbar-width: thin; }
       .mirror-header-bar > div:last-child button { min-height: 30px !important; padding: .25rem .45rem !important; font-size: .68rem !important; }
       .glass-dock { max-width: calc(100vw - 1.5rem); overflow-x: auto; overscroll-behavior-x: contain; touch-action: pan-x; }
       .dock-container { max-width: 100%; }
+      .modal-backdrop { align-items: flex-start; padding: max(1rem, var(--safe-top)) max(.75rem, var(--safe-right)) max(1rem, var(--safe-bottom)) max(.75rem, var(--safe-left)); }
+      .modal-card { padding: 1.5rem 1.1rem; max-height: calc(100dvh - 2rem - var(--safe-top) - var(--safe-bottom)); }
+    }
+    @media (max-width: 600px) {
+      .launch-ambient-glow { width: min(100vw, 520px); }
+      #screen-mirror { padding-left: max(var(--safe-left), .75rem); padding-right: max(var(--safe-right), .75rem); }
+    }
+    @media (max-width: 600px) and (max-height: 520px) {
+      #screen-mirror.lab-open #mirror-viewport {
+        width: min(72vw, max(140px, calc(100dvh - 300px)));
+        height: min(72vw, max(140px, calc(100dvh - 300px)));
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -1316,7 +1340,7 @@
       <section id="installer-checkout">
         <div class="installer-meta">THE MIRROR · TRIAL ACCESS</div>
         <h2>One reflection.<br>$500.</h2>
-        <p>Demo checkout. No card details, personal data, or real charge. The dramatic price is part of the presentation.</p>
+        <p>Demo checkout. No card details, personal data, or real charge. Itne paison mein itna hi milta, saar: one reflection; extra pixels are Gold-only. Pumpwell will decide the download speed.</p>
         <div class="installer-row" style="margin-top: 1.5rem"><span class="installer-meta">REQUIRED TO START THE 25 GB DEMO DOWNLOAD</span><button id="btn-trial-pay">Pay $500 (demo)</button></div>
       </section>
       <section id="installer-download" hidden>
@@ -1403,7 +1427,7 @@
 
       <div class="launch-actions">
         <button id="btn-begin" class="btn-solid-white">Open Mirror</button>
-        <button id="btn-pwa-install" class="btn-pwa-install" hidden>Install Application</button>
+        <button id="btn-pwa-install" class="btn-pwa-install">Install The Mirror</button>
         <button id="btn-judge-mode-launch" class="btn-glass" style="width: 100%; font-size: 0.82rem;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -1841,6 +1865,21 @@
     </div>
   </div>
 
+  <div id="modal-install-guide" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="install-guide-title">
+    <div class="modal-card">
+      <button id="btn-close-install-guide" class="modal-close-icon" aria-label="Close install instructions">×</button>
+      <h3 id="install-guide-title" class="modal-title">Install The Mirror</h3>
+      <p class="modal-desc">After Vercel deployment, add this web app to your home screen. It opens like an app and can load its cached shell offline.</p>
+      <div class="specs-grid">
+        <div class="spec-item"><div class="spec-title">iPhone or iPad</div><div class="spec-desc">Open this page in Safari, tap Share, choose Add to Home Screen, then tap Add.</div></div>
+        <div class="spec-item"><div class="spec-title">Android</div><div class="spec-desc">In Chrome, open the menu and choose Install app or Add to Home screen.</div></div>
+        <div class="spec-item"><div class="spec-title">Desktop</div><div class="spec-desc">Use the install icon in the address bar or choose Install The Mirror from the browser menu.</div></div>
+      </div>
+      <p class="modal-desc" style="margin-bottom: 1rem">Camera access needs HTTPS. Vercel supplies it after deployment.</p>
+      <button id="btn-install-guide-done" class="btn-solid-white" style="width: 100%;">Got it</button>
+    </div>
+  </div>
+
   <!-- ============================================================
        MODAL 3: Live Ego Index Analysis
        ============================================================ -->
@@ -1888,7 +1927,7 @@
       </button>
 
       <h3 class="modal-title">Delete The Mirror</h3>
-      <p class="modal-desc">Demo deletion fee: $500, including a $499 overacting surcharge. The mirror will perform a solemn exit. No actual payment is taken.</p>
+        <p class="modal-desc">Demo deletion fee: $500, including a $499 overacting surcharge. Itne paison mein itna hi milta, boss: one majestic goodbye. No actual payment is taken.</p>
 
       <div class="specs-grid" style="text-align: left;">
         <div class="bill-row">
@@ -1917,7 +1956,7 @@
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.1</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.4</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -1933,9 +1972,9 @@
       MEMBERS: ['Member 1', 'Member 2', 'Member 3', 'Member 4'],
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
-      VERSION: '4.3.1'
+      VERSION: '4.3.4'
     };
-    const INDEX_BYTES = 139811; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 142927; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)
@@ -2424,7 +2463,7 @@
         try { sessionStorage.setItem('mirrorInstallerShown', '1'); } catch (_) { /* Continue with in-memory demo state. */ }
         checkout.hidden = true;
         download.hidden = false;
-        showToast('Demo payment accepted: $500. Charged: $0.');
+        showToast('Itne paison mein itna hi milta, saar. Demo: $500 shown, $0 charged.');
         beginDownload();
       }, { once: true });
       const stages = ['Reticulating photons', 'Optimising the reflection pipeline', 'Waiting for the Pumpwell signal', 'Checking the reflection package'];
@@ -2555,14 +2594,19 @@
     btnPayMonopoly.addEventListener('click', () => {
       modalBill.classList.remove('active');
       stopCamera();
-      goodbyeMessage.textContent = 'Demo payment accepted: $500 (actual charge: $0). Deleted. 25.0 GB remain, for your convenience.';
+      goodbyeMessage.textContent = 'Demo payment accepted: $500 (actual charge: $0). Itne paison mein itna hi milta, boss: one majestic goodbye. Deleted. 25.0 GB remain, for your convenience.';
       showScreen(screenGoodbye);
     });
 
     const aboutModal = document.getElementById('modal-about');
+    const installGuide = document.getElementById('modal-install-guide');
     document.getElementById('btn-about').addEventListener('click', () => aboutModal.classList.add('active'));
     document.getElementById('btn-close-about').addEventListener('click', () => aboutModal.classList.remove('active'));
     document.getElementById('btn-about-done').addEventListener('click', () => aboutModal.classList.remove('active'));
+    const closeInstallGuide = () => installGuide.classList.remove('active');
+    document.getElementById('btn-close-install-guide').addEventListener('click', closeInstallGuide);
+    document.getElementById('btn-install-guide-done').addEventListener('click', closeInstallGuide);
+    installGuide.addEventListener('click', (event) => { if (event.target === installGuide) closeInstallGuide(); });
     const updatesSheet = document.getElementById('updates-sheet');
     document.getElementById('btn-updates').addEventListener('click', () => updatesSheet.classList.add('active'));
     document.getElementById('btn-close-updates').addEventListener('click', () => updatesSheet.classList.remove('active'));
@@ -2815,6 +2859,7 @@
     btnToggleAbsurd.addEventListener('click', () => {
       const isHidden = absurdDock.hidden;
       absurdDock.hidden = !isHidden;
+      screenMirror.classList.toggle('lab-open', isHidden);
       btnToggleAbsurd.classList.toggle('active', isHidden);
       if (isHidden) {
         showToast(' Absurd Lab unlocked: 16 useless experimental optics');
@@ -2892,14 +2937,12 @@
     btnFog.addEventListener('click', triggerFog);
 
     const KUDLA_FIELD_NOTES = [
-      'Kudla field note: Pumpwell traffic detected. The reflection has arrived in three installments.',
-      'Monsoon report: 100% humidity. Silver still shows the whole picture; Gold claims it polished the rain.',
-      'Neer dosa has more layers than our pricing page. At least the dosa earns them.',
-      'Panambur wind has better hair than this device. Gold would like credit for noticing.',
-      'Goli baje launch strategy: rise dramatically, leave no lasting product.',
-      'The ferry is moving. Our 25 GB download is still checking with the Pumpwell signal.',
-      'Mangalorean forecast: bright intervals between rain. The subscription terms remain overcast.',
-      'Kudla calibration complete: mirror level, confidence premium, practical value unchanged.'
+      'Pumpwell ETA: one signal cycle. The app has selected the scenic route.',
+      'Monsoon test: 100% humidity. The mirror passed; the release notes are damp.',
+      'Hampankatta pricing review: $500 for a reflection. Finance calls that a local market fit.',
+      'Kudla calibration: reflection unchanged, confidence invoice updated.',
+      'At Hampankatta, even this cancellation policy would need directions.',
+      'Pumpwell status: moving, technically. The download agrees.'
     ];
     let kudlaNoteIndex = 0;
     document.getElementById('btn-kudla').addEventListener('click', () => {
@@ -3238,12 +3281,10 @@
       "We spent $4.2B in R&D to align the virtual bezel.",
       "A revolutionary breakthrough in vanity.",
       "Can you believe bathroom mirrors used to be made of glass for free?",
-      "Pumpwell traffic: even the buffering circle reached home before this reflection.",
-      "Neer dosa: full coverage, no premium edition.",
-      "The Arabian Sea sent a humidity advisory. Billing called it a feature.",
-      "Goli baje rises in hot oil; our launch rose in the slide deck.",
-      "At Panambur, the wind performs better than our hair simulator.",
-      "KS Rao Road has fewer redirects than this cancellation policy."
+      "Pumpwell traffic: the buffering circle has moved three metres. The download calls this momentum.",
+      "Monsoon report: humidity is free. Our premium fog filter is $500.",
+      "Hampankatta pricing: $500 for a reflection. Finance says the decimal point is a future feature.",
+      "Kudla field report: the reflection is local; the invoice is internationally ambitious."
     ];
 
     let keynoteIdx = 0;
@@ -3409,6 +3450,7 @@
         cancelDemoDirector();
         modalQr.classList.remove('active');
         modalPrivacy.classList.remove('active');
+        closeInstallGuide();
         modalEgo.classList.remove('active');
         modalBill.classList.remove('active');
         aboutModal.classList.remove('active');
@@ -3454,6 +3496,9 @@
       });
     }
 
+    const alreadyInstalled = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+    btnPwaInstall.hidden = alreadyInstalled;
+
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       state.installPrompt = e;
@@ -3461,9 +3506,13 @@
     });
 
     btnPwaInstall.addEventListener('click', async () => {
-      if (!state.installPrompt) return;
-      state.installPrompt.prompt();
-      const choice = await state.installPrompt.userChoice;
+      if (!state.installPrompt) {
+        installGuide.classList.add('active');
+        return;
+      }
+      const prompt = state.installPrompt;
+      prompt.prompt();
+      const choice = await prompt.userChoice;
       if (choice.outcome === 'accepted') {
         showToast('The Mirror installed to your home screen');
       }
@@ -3480,7 +3529,7 @@
     // Presentation closing credits use the editable event configuration above.
     document.getElementById('keynote-credits').textContent = `Built with ${CONFIG.TOOLS_USED.join(', ')}. Free for this presentation. The next trial is $500; you're worth more than that. Usually, if something is free, you're the product. Here, the mirror is the product. No tracking or personal data collection.`;
     document.getElementById('keynote-team').textContent = `${CONFIG.TEAM_NAME} · ${CONFIG.MEMBERS.join(' · ')} · Kudla · ${CONFIG.DEPLOY_URL || 'Deployment URL pending'}`;
-    document.querySelector('#modal-about .modal-title').textContent = `The Mirror · v${CONFIG.VERSION}`;
+      document.querySelector('#modal-about .modal-title').textContent = `The Mirror · v${CONFIG.VERSION}`;
     startInstallerGate();
   </script>
 </body>

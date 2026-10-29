@@ -5,28 +5,34 @@
 - Replaced the 60-second walkthrough with a 3-minute manual-first keynote, keyboard/swipe navigation, hidden speaker notes (`N`), visible elapsed time, and cancellable auto-play.
 - Added a theatrical $500 demo checkout before the fake 25 GB download. It collects no card data and charges $0; the simulated download remains skippable and capped at 18 seconds.
 - Fixed Silver to show the full reflection in every frame. Gold keeps the same view with a champagne rim and an extra-photon badge.
-- Added the rotating Kudla Field Notes control with dry local jokes about Pumpwell, monsoon weather, neer dosa, Panambur, goli baje, and ferry delays.
+- Added rotating Kudla Field Notes with dry product jokes about Pumpwell, monsoon humidity, and Hampankatta pricing.
 - Added in-memory two-month updates (+1 minor version, +10 GB) and an update history sheet that preserves v4.3 / 25 GB as the baseline.
 - Reused the existing billing and goodbye screens for the three-step removal flow. Payment is cosmetic.
 - Added event configuration, product-targeted copy, inline icons/plain labels, and a shared audio gain/compressor path. Disabled system speech output.
 - Made deletion require a clearly marked $500 demo payment, including a $499 overacting surcharge; the confirmation charges $0 and takes no payment data.
-- Matched the package, visible release, and service-worker cache at v4.3.1; precached the QR asset and retained activation-time eviction of older caches.
+- Fixed the Silver live reflection to fill its aperture, and made the aperture shrink on short phones while the extra Lab dock is open so it cannot collide with controls.
+- Matched the package, visible release, and service-worker cache at v4.3.4; precached the QR asset and retained activation-time eviction of older caches.
+- Reworked the Kudla jokes to target the product and its pricing, using six local references across Pumpwell, monsoon humidity, Hampankatta, Kudla, Bearys Institute, and MAD HACKS.
 - Removed the stale LAN IP, replaced the old QR with a marked deployment placeholder, and made the share dialog display `location.origin`.
 - Rewrote README and added this change log and a 3-minute speaker script.
 - Added an optional port argument to the local server because port 8000 is reserved in the current environment; default remains 8000.
 
 ## Verification
 
-- Playwright verified the required $500 demo checkout, fake download, full-width Silver video (`clip-path: none`), Gold badge and return path, Kudla field note, $500 delete demo with `$0` actual charge, and the update history transition from v4.3 / 25 GB to v4.4 / 35 GB.
-- At 390×844 and 1440×900, the page had no horizontal or vertical overflow. Camera fallback was used without granting camera access; the only browser warning was the expected camera-denied warning.
-- Static checks passed: inline JavaScript parsed, `node --check server.js` passed, the installer byte count matched the 139,811-byte HTML file, release/package/service-worker versions matched at v4.3.1, and targeted privacy/stale-address checks found no issues.
+- Playwright verified the $500 demo checkout and skippable fake download, full-frame Silver video (`clip-path: none`), Gold return path, $500 delete gag with a $0 charge and free Keep action, and the two-month update transition.
+- A 15-size sweep from 320×480 to 1440×900 found no horizontal overflow or mirror collisions with the header or dock, including when the Lab is open. At 320×480 with the Lab open, the mirror aperture scales to 180 px with a 20 px gap above the dock.
+- At 320×568, the install guide stays inside the viewport and its close button is visible; its content scrolls internally. The delete modal fits without scrolling and has the free Keep action visible.
+- Offline reload returned The Mirror from the service-worker cache. The browser reported the standalone manifest, one active service worker, and only the v4.3.4 cache.
+- Browser run covered launch, Silver/Gold switch, and delete/Keep: zero console errors or uncaught runtime errors; one expected camera-permission warning because the test browser did not grant camera access.
+- Static checks passed: inline JavaScript parsed, `node --check server.js` passed, JSON parsed, installer byte count matched the 142,927-byte HTML file, release/package/service-worker versions matched at v4.3.4, no personal-data inputs or external URLs were found, and no infinite animation runs below 0.33 seconds.
 
 ## Local references used
 
-- Pumpwell signal: installer ETA joke.
+- Pumpwell: traffic and installer ETA jokes.
 - Monsoon humidity: fog test joke.
+- Hampankatta: pricing and cancellation-policy jokes.
+- Kudla: local calibration and footer references.
 - Bearys Institute and MAD HACKS 2026: About panel.
-- Kudla: keynote footer.
 
 ## Noticed, not touched
 

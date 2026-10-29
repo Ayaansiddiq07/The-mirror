@@ -1309,6 +1309,12 @@
     @media (max-width: 1420px) {
       .top-left-group { display: none; }
     }
+    @media (min-width: 1421px) and (max-width: 1700px) and (min-height: 720px) {
+      .top-left-group { top: calc(var(--safe-top) + 94px); }
+    }
+    @media (min-width: 1421px) and (max-width: 1700px) and (max-height: 719px) {
+      .top-left-group { display: none; }
+    }
     @media (max-width: 1100px) {
       .mirror-header-bar { max-width: 100%; flex-wrap: wrap; align-items: flex-start; gap: .5rem; padding: 0; }
       .header-left-pill { max-width: calc(100% - 5.5rem); min-width: 0; padding: .35rem .5rem; gap: .3rem; }
@@ -1956,7 +1962,7 @@
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.5</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.6</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -1972,9 +1978,9 @@
       MEMBERS: ['Member 1', 'Member 2', 'Member 3', 'Member 4'],
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
-      VERSION: '4.3.5'
+      VERSION: '4.3.6'
     };
-    const INDEX_BYTES = 143426; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 143702; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)

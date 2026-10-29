@@ -12,7 +12,8 @@
 - Made deletion require a clearly marked $500 demo payment, including a $499 overacting surcharge; the confirmation charges $0 and takes no payment data.
 - Fixed the Silver live reflection to fill its aperture, and made the aperture shrink on short phones while the extra Lab dock is open so it cannot collide with controls.
 - The first Kudla joke now appears as a subtitle over the reflection as the Mirror opens; the Kudla button advances the same caption through the remaining lines.
-- Matched the package, visible release, and service-worker cache at v4.3.5; precached the QR asset and retained activation-time eviction of older caches.
+- Reflowed the fixed timer/ego/billing group below the header at medium-wide desktop widths to eliminate the collision visible in the screenshot; it remains hidden on compact and short screens.
+- Matched the package, visible release, and service-worker cache at v4.3.6; precached the QR asset and retained activation-time eviction of older caches.
 - Reworked the Kudla jokes to target the product and its pricing, using six local references across Pumpwell, monsoon humidity, Hampankatta, Kudla, Bearys Institute, and MAD HACKS.
 - Removed the stale LAN IP, replaced the old QR with a marked deployment placeholder, and made the share dialog display `location.origin`.
 - Rewrote README and added this change log and a 3-minute speaker script.
@@ -21,12 +22,12 @@
 ## Verification
 
 - Playwright verified the $500 demo checkout and skippable fake download, full-frame Silver video (`clip-path: none`), Gold return path, $500 delete gag with a $0 charge and free Keep action, and the two-month update transition.
-- A 15-size sweep from 320×480 to 1440×900 found no horizontal overflow or mirror collisions with the header or dock, including when the Lab is open. At 320×480 with the Lab open, the mirror aperture scales to 180 px with a 20 px gap above the dock.
+- An 11-size active-screen sweep from 320×480 to 1800×900 found no horizontal overflow, status/header collisions, header/right-control collisions, or mirror/dock collisions. In the supplied 1534×1050 layout, the status pills sit below the header. At 320×480 with the Lab open, the mirror aperture scales to 180 px with a 20 px gap above the dock.
 - At 320×568, the install guide stays inside the viewport and its close button is visible; its content scrolls internally. The delete modal fits without scrolling and has the free Keep action visible.
-- Offline reload returned The Mirror from the service-worker cache. The browser reported the standalone manifest, one active service worker, and only the v4.3.5 cache.
+- Offline reload returned The Mirror from the service-worker cache. The browser reported the standalone manifest, one active service worker, and only the v4.3.6 cache.
 - Playwright verified the opening Kudla subtitle appears inside the reflection viewport, then the Kudla button advances to the next line.
 - Browser run covered launch, Silver/Gold switch, and delete/Keep: zero console errors or uncaught runtime errors; one expected camera-permission warning because the test browser did not grant camera access.
-- Static checks passed: inline JavaScript parsed, `node --check server.js` passed, JSON parsed, installer byte count matched the 143,426-byte HTML file, release/package/service-worker versions matched at v4.3.5, no personal-data inputs or external URLs were found, and no infinite animation runs below 0.33 seconds.
+- Static checks passed: inline JavaScript parsed, `node --check server.js` passed, JSON parsed, installer byte count matched the 143,702-byte HTML file, release/package/service-worker versions matched at v4.3.6, no personal-data inputs or external URLs were found, and no infinite animation runs below 0.33 seconds.
 
 ## Local references used
 

@@ -6,6 +6,8 @@ For the full keynote narration, use [KEYNOTE_VOICEOVER.md](KEYNOTE_VOICEOVER.md)
 
 The nine interaction clips (Gold, delete, and all seven Kudla cues) are included under `interaction_voiceover/` and are documented in [INTERACTION_VOICEOVER.md](INTERACTION_VOICEOVER.md).
 
+For Hindi/Hinglish voice cues for the remaining mirror controls and Absurd Lab features, use [FEATURE_VOICEOVER.md](FEATURE_VOICEOVER.md). The named clips are a recording/cut map; those new clips are not wired until the generated audio is supplied.
+
 | Time / slide | Speaker | Talk track |
 |---|---|---|
 | 0:00 · 1 | Member 1 | “This is The Mirror: a 25 GB download that shows you your own face. The $500 trial checkout is required to start the demo. The button says Pay; the receipt says zero. Finance calls that a successful conversion.” Tap Pay $500 (demo), open the mirror, and let the Kudla caption land. |

@@ -23,6 +23,7 @@
 - Added the supplied Gold, delete, seven Kudla, and keynote recordings; playback uses the shared compressed audio path, and all MP3 files are precached for offline use.
 - Added an audible `file://` preview path for browsers that mute media routed through Web Audio on opaque file origins. Direct preview is capped at 0.15; deployed playback stays on the master gain/compressor.
 - Matched the package, About panel, and service-worker cache at v4.3.11.
+- Added `FEATURE_VOICEOVER.md` with ElevenLabs recording directions and 41 remaining feature/control cues, including the housefly and every Keynote AI caption.
 - Removed the stale LAN IP, replaced the old QR with a marked deployment placeholder, and made the share dialog display `location.origin`.
 - Rewrote README and added this change log and a 3-minute speaker script.
 - Added an optional port argument to the local server because port 8000 is reserved in the current environment; default remains 8000.

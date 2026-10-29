@@ -106,15 +106,13 @@
     #screen-mirror .frame-arched.gold-edition,
     #screen-mirror .frame-oval.gold-edition,
     #screen-mirror .frame-full.gold-edition { border-color: var(--edition-accent); }
-    #screen-mirror .frame-arched:not(.gold-edition) #camera-video,
-    #screen-mirror .frame-oval:not(.gold-edition) #camera-video,
-    #screen-mirror .frame-full:not(.gold-edition) #camera-video { clip-path: inset(0 55% 0 0); }
-    #screen-mirror .frame-arched:not(.gold-edition)::after,
-    #screen-mirror .frame-oval:not(.gold-edition)::after,
-    #screen-mirror .frame-full:not(.gold-edition)::after {
-      content: "GOLD SHOWS ALL OF YOU"; position: absolute; inset: 0 0 0 55%; display: grid; place-items: center;
-      padding: 1rem; color: #777; background: var(--edition-panel); border-left: 1px solid #333;
-      font: 600 .68rem/1.5 ui-monospace, monospace; letter-spacing: .12em; text-align: center; pointer-events: none;
+    #mirror-viewport.gold-edition { filter: saturate(1.04); }
+    #mirror-viewport.gold-edition::after {
+      content: "GOLD · SAME REFLECTION · ONE EXTRA PHOTON";
+      position: absolute; right: .75rem; bottom: .75rem; z-index: 5;
+      padding: .4rem .55rem; border: 1px solid rgba(229,193,88,.42); border-radius: 999px;
+      background: rgba(12,11,8,.78); color: var(--gold-light);
+      font: 600 .58rem/1.2 ui-monospace, monospace; letter-spacing: .06em; pointer-events: none;
     }
 
     .installer-gate, .keynote-overlay { position: fixed; inset: 0; z-index: 200; background: #050505; color: #f5f5f7; }
@@ -1313,15 +1311,23 @@
 </head>
 <body>
 
-  <div id="installer-gate" class="installer-gate" role="dialog" aria-modal="true" aria-label="The Mirror installer" hidden>
+  <div id="installer-gate" class="installer-gate" role="dialog" aria-modal="true" aria-label="The Mirror demo trial and installer" hidden>
     <div class="installer-card">
-      <div class="installer-meta">THE MIRROR INSTALLER</div>
-      <h2>Downloading The Mirror, 25.0 GB.</h2>
-      <p id="installer-stage">Preparing optical inventory</p>
-      <div class="installer-track" aria-label="Download progress"><span id="installer-progress"></span></div>
-      <div class="installer-row installer-meta"><span id="installer-percent">0%</span><span id="installer-eta">ETA: 00:04</span></div>
-      <p id="installer-truth" hidden></p>
-      <div class="installer-row" style="margin-top: 1.5rem"><span></span><button id="btn-installer-skip">Skip</button></div>
+      <section id="installer-checkout">
+        <div class="installer-meta">THE MIRROR · TRIAL ACCESS</div>
+        <h2>One reflection.<br>$500.</h2>
+        <p>Demo checkout. No card details, personal data, or real charge. The dramatic price is part of the presentation.</p>
+        <div class="installer-row" style="margin-top: 1.5rem"><span class="installer-meta">REQUIRED TO START THE 25 GB DEMO DOWNLOAD</span><button id="btn-trial-pay">Pay $500 (demo)</button></div>
+      </section>
+      <section id="installer-download" hidden>
+        <div class="installer-meta">THE MIRROR INSTALLER · $500 DEMO CHECKOUT COMPLETE</div>
+        <h2>Downloading The Mirror, 25.0 GB.</h2>
+        <p id="installer-stage">Preparing optical inventory</p>
+        <div class="installer-track" aria-label="Download progress"><span id="installer-progress"></span></div>
+        <div class="installer-row installer-meta"><span id="installer-percent">0%</span><span id="installer-eta">ETA: 00:04</span></div>
+        <p id="installer-truth" hidden></p>
+        <div class="installer-row" style="margin-top: 1.5rem"><span></span><button id="btn-installer-skip">Skip</button></div>
+      </section>
     </div>
   </div>
 
@@ -1329,9 +1335,9 @@
     <div id="keynote-frame" class="keynote-frame">
       <div class="keynote-slide active" data-keynote-slide="0"><div class="installer-meta">MAD HACKS 2026 · USELESS SOFTWARE</div><h1>The Mirror</h1><p>A 25 GB download that shows you your own face.</p></div>
       <div class="keynote-slide" data-keynote-slide="1"><div class="installer-meta">25.0 GB</div><h2>Twenty-five gigabytes.<br>One reflection.</h2><p>Reserved disk space: 0 B.</p></div>
-      <div class="keynote-slide" data-keynote-slide="2"><div class="installer-meta">TWO EDITIONS</div><h2><span class="edition-accent">Silver</span> / Gold</h2><p>Silver gives you 45% of the screen. Gold removes the panel.</p><button class="edition-toggle" data-keynote-action="edition">Switch to Gold</button></div>
-      <div class="keynote-slide" data-keynote-slide="3"><div class="installer-meta" id="keynote-version">v4.2 · 25 GB</div><h2>Updates every two months.</h2><p id="keynote-changelog">Each update adds 10 GB.</p><button data-keynote-action="update">Skip 2 months</button></div>
-      <div class="keynote-slide" data-keynote-slide="4"><div class="installer-meta">ACCOUNT CLOSURE</div><h2>Removal fee:<br>Rs 49,999.</h2><p>Or wait 30 business days.</p><button data-keynote-action="delete">Review removal terms</button></div>
+      <div class="keynote-slide" data-keynote-slide="2"><div class="installer-meta">TWO EDITIONS · FULL REFLECTION IN BOTH</div><h2><span class="edition-accent">Silver</span> / Gold</h2><p>Silver shows the whole reflection. Gold adds a champagne rim and one extra photon.</p><button class="edition-toggle" data-keynote-action="edition">Switch to Gold</button></div>
+      <div class="keynote-slide" data-keynote-slide="3"><div class="installer-meta" id="keynote-version">v4.3 · 25 GB</div><h2>Updates every two months.</h2><p id="keynote-changelog">Each update adds 10 GB.</p><button data-keynote-action="update">Skip 2 months</button></div>
+      <div class="keynote-slide" data-keynote-slide="4"><div class="installer-meta">ACCOUNT CLOSURE · VERY SERIOUS DEMO CHECKOUT</div><h2>Deletion:<br>$500.</h2><p>Includes a $499 overacting surcharge. No real payment.</p><button data-keynote-action="delete">Review removal terms</button></div>
       <div class="keynote-slide" data-keynote-slide="5"><div class="installer-meta">WHY IT IS USELESS</div><h2>It reflects you.</h2><p>Glass already does this. It does not need 25 GB.</p></div>
       <div class="keynote-slide" data-keynote-slide="6"><div class="installer-meta">WHAT WE BUILT</div><h2>Small software.<br>Large presentation.</h2><p id="keynote-credits"></p><p id="keynote-team"></p></div>
       <div class="keynote-notes" id="keynote-notes"></div>
@@ -1426,7 +1432,7 @@
       <div class="header-left-pill">
         <div class="status-dot"></div>
         <span id="tier-indicator" class="tier-label">Silver</span>
-        <span id="edition-version" class="tier-label">v4.2 · 25 GB</span>
+        <span id="edition-version" class="tier-label">v4.3 · 25 GB</span>
       </div>
 
       <!-- Quick Action Pills -->
@@ -1670,6 +1676,9 @@
         <button id="btn-roast" class="dock-action-btn" title="Deadpan Keynote AI text commentary">
           <span> Keynote</span>
         </button>
+        <button id="btn-kudla" class="dock-action-btn" title="Kudla Field Notes: dry Mangalorean commentary for the reflection economy">
+          <span> Kudla</span>
+        </button>
       </nav>
 
       <!-- Primary Dock (Pristine Apple aesthetic) -->
@@ -1879,7 +1888,7 @@
       </button>
 
       <h3 class="modal-title">Delete The Mirror</h3>
-      <p class="modal-desc">Removal fee: Rs 49,999. Or wait 30 business days.</p>
+      <p class="modal-desc">Demo deletion fee: $500, including a $499 overacting surcharge. The mirror will perform a solemn exit. No actual payment is taken.</p>
 
       <div class="specs-grid" style="text-align: left;">
         <div class="bill-row">
@@ -1891,27 +1900,27 @@
           <span>Received</span>
         </div>
         <div class="bill-row">
-          <span>3. Review the contract</span>
-          <span>30 business days</span>
+          <span>3. Approve dramatic account closure</span>
+          <span>One theatrical click</span>
         </div>
         <div class="bill-row total">
-          <span>Removal fee</span>
-          <span>Rs 49,999</span>
+          <span>Demo fee · includes $499 overacting surcharge</span>
+          <span>$500</span>
         </div>
       </div>
 
       <button id="btn-pay-monopoly" class="btn-solid-white" style="width: 100%;">
-        Pay (demo)
+        Pay $500 &amp; delete (demo)
       </button>
       <button id="btn-keep-mirror" class="btn-glass" style="width: 100%; margin-top: .6rem">Keep</button>
     </div>
   </div>
 
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-    <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.2.2</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.1</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
-    <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.2 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
+    <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
 
   <!-- ============================================================
@@ -1924,9 +1933,9 @@
       MEMBERS: ['Member 1', 'Member 2', 'Member 3', 'Member 4'],
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
-      VERSION: '4.2.2'
+      VERSION: '4.3.1'
     };
-    const INDEX_BYTES = 136398; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 139811; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)
@@ -2216,7 +2225,7 @@
     };
 
     const TIERS = [
-      { id: 'silver', name: 'Silver', btnText: 'Upgrade to Gold', cssClass: '', labelClass: '' },
+      { id: 'silver', name: 'Silver', btnText: 'Upgrade to Gold · +1 photon', cssClass: '', labelClass: '' },
       { id: 'gold', name: 'Gold', btnText: 'Return to Silver', cssClass: 'gold-edition', labelClass: 'gold' }
     ];
 
@@ -2340,8 +2349,10 @@
     let cancelDemoDirector = () => {};
     let keynoteStartedAt = 0;
     let keynoteClockTimer = null;
-    let releaseMinor = 2;
-    let appSizeGB = 25;
+    let releaseMinor = Number(CONFIG.VERSION.split('.')[1]);
+    const initialReleaseLabel = `v${CONFIG.VERSION.split('.')[0]}.${releaseMinor}`;
+    const initialAppSizeGB = 25;
+    let appSizeGB = initialAppSizeGB;
     let updateHistory = [];
     const editionVersion = document.getElementById('edition-version');
     const goodbyeMessage = document.getElementById('goodbye-message');
@@ -2373,7 +2384,7 @@
       editionVersion.textContent = label;
       document.getElementById('keynote-version').textContent = label;
       document.getElementById('updates-history').innerHTML = [
-        `<div class="spec-desc">v4.2 · 25 GB · Initial reflection package</div>`,
+        `<div class="spec-desc">${initialReleaseLabel} · ${initialAppSizeGB} GB · Initial reflection package</div>`,
         ...updateHistory.map((entry) => `<div class="spec-desc">${entry}</div>`)
       ].join('');
     }
@@ -2381,11 +2392,11 @@
     function skipTwoMonths() {
       releaseMinor += 1;
       appSizeGB += 10;
-      const line = `Improved reflection of the left side. Now ${appSizeGB} GB.`;
-      updateHistory.unshift(`v4.${releaseMinor} · ${appSizeGB} GB · ${line}`);
+      const line = `Improved reflection of the left side. Now ${appSizeGB} GB. Kudla humidity remains outside the release notes.`;
+      updateHistory.unshift(`v${CONFIG.VERSION.split('.')[0]}.${releaseMinor} · ${appSizeGB} GB · ${line}`);
       updateReleaseDisplay();
       document.getElementById('keynote-changelog').textContent = line;
-      showToast(`Two months skipped. v4.${releaseMinor} · ${appSizeGB} GB`);
+      showToast(`Two months skipped. v${CONFIG.VERSION.split('.')[0]}.${releaseMinor} · ${appSizeGB} GB`);
       document.getElementById('updates-sheet').classList.add('active');
     }
 
@@ -2398,7 +2409,6 @@
       let shownThisSession = false;
       try {
         shownThisSession = sessionStorage.getItem('mirrorInstallerShown') === '1';
-        if (!shownThisSession) sessionStorage.setItem('mirrorInstallerShown', '1');
       } catch (_) { /* Storage disabled: show the gate for this page load. */ }
       if (shownThisSession) return;
       gate.hidden = false;
@@ -2408,10 +2418,30 @@
       const stage = document.getElementById('installer-stage');
       const truth = document.getElementById('installer-truth');
       const button = document.getElementById('btn-installer-skip');
+      const checkout = document.getElementById('installer-checkout');
+      const download = document.getElementById('installer-download');
+      document.getElementById('btn-trial-pay').addEventListener('click', () => {
+        try { sessionStorage.setItem('mirrorInstallerShown', '1'); } catch (_) { /* Continue with in-memory demo state. */ }
+        checkout.hidden = true;
+        download.hidden = false;
+        showToast('Demo payment accepted: $500. Charged: $0.');
+        beginDownload();
+      }, { once: true });
       const stages = ['Reticulating photons', 'Optimising the reflection pipeline', 'Waiting for the Pumpwell signal', 'Checking the reflection package'];
-      const started = Date.now();
       let interval;
       let finished = false;
+      const beginDownload = () => {
+        const downloadStarted = Date.now();
+        interval = setInterval(() => {
+          const elapsed = Math.min(18000, Date.now() - downloadStarted);
+          const pct = Math.min(96, Math.round(elapsed / 18000 * 96));
+          progress.style.width = `${pct}%`;
+          percent.textContent = `${pct}%`;
+          eta.textContent = `ETA: 00:${String(Math.min(18, Math.ceil(4 + elapsed / 1800))).padStart(2, '0')}`;
+          stage.textContent = stages[Math.min(stages.length - 1, Math.floor(elapsed / 4500))];
+          if (elapsed >= 18000) finish();
+        }, 400);
+      };
       const finish = () => {
         if (finished) return;
         finished = true;
@@ -2427,15 +2457,6 @@
         if (finished) gate.hidden = true;
         else { clearInterval(interval); gate.hidden = true; }
       });
-      interval = setInterval(() => {
-        const elapsed = Math.min(18000, Date.now() - started);
-        const pct = Math.min(96, Math.round(elapsed / 18000 * 96));
-        progress.style.width = `${pct}%`;
-        percent.textContent = `${pct}%`;
-        eta.textContent = `ETA: 00:${String(Math.min(18, Math.ceil(4 + elapsed / 1800))).padStart(2, '0')}`;
-        stage.textContent = stages[Math.min(stages.length - 1, Math.floor(elapsed / 4500))];
-        if (elapsed >= 18000) finish();
-      }, 400);
     }
 
     // ============================================================
@@ -2534,7 +2555,7 @@
     btnPayMonopoly.addEventListener('click', () => {
       modalBill.classList.remove('active');
       stopCamera();
-      goodbyeMessage.textContent = 'Deleted. 25.0 GB remain, for your convenience.';
+      goodbyeMessage.textContent = 'Demo payment accepted: $500 (actual charge: $0). Deleted. 25.0 GB remain, for your convenience.';
       showScreen(screenGoodbye);
     });
 
@@ -2773,7 +2794,7 @@
       btnRevertSilver.hidden = (state.tierIndex === 0);
       btnToggleGold.classList.toggle('edition-gold', state.tierIndex === 1);
       keynoteOverlay.classList.toggle('is-gold', state.tierIndex === 1);
-      showToast(state.tierIndex === 1 ? 'Gold shows all of you' : 'Silver · 45% aperture');
+      showToast(state.tierIndex === 1 ? 'Gold: full reflection, gold rim, one extra photon. Charged: $0.' : 'Silver: the full reflection, in full.');
       const keynoteEdition = document.querySelector('[data-keynote-action="edition"]');
       if (keynoteEdition) keynoteEdition.textContent = state.tierIndex === 1 ? 'Switch to Silver' : 'Switch to Gold';
     }
@@ -2869,6 +2890,22 @@
     window.addEventListener('touchend', () => { isWiping = false; });
 
     btnFog.addEventListener('click', triggerFog);
+
+    const KUDLA_FIELD_NOTES = [
+      'Kudla field note: Pumpwell traffic detected. The reflection has arrived in three installments.',
+      'Monsoon report: 100% humidity. Silver still shows the whole picture; Gold claims it polished the rain.',
+      'Neer dosa has more layers than our pricing page. At least the dosa earns them.',
+      'Panambur wind has better hair than this device. Gold would like credit for noticing.',
+      'Goli baje launch strategy: rise dramatically, leave no lasting product.',
+      'The ferry is moving. Our 25 GB download is still checking with the Pumpwell signal.',
+      'Mangalorean forecast: bright intervals between rain. The subscription terms remain overcast.',
+      'Kudla calibration complete: mirror level, confidence premium, practical value unchanged.'
+    ];
+    let kudlaNoteIndex = 0;
+    document.getElementById('btn-kudla').addEventListener('click', () => {
+      showToast(KUDLA_FIELD_NOTES[kudlaNoteIndex % KUDLA_FIELD_NOTES.length], 4200);
+      kudlaNoteIndex++;
+    });
 
     // 2. Interactive Housefly
     function moveFlyRandomly() {
@@ -3200,7 +3237,13 @@
       "Zero product defects detected in the reflection pipeline.",
       "We spent $4.2B in R&D to align the virtual bezel.",
       "A revolutionary breakthrough in vanity.",
-      "Can you believe bathroom mirrors used to be made of glass for free?"
+      "Can you believe bathroom mirrors used to be made of glass for free?",
+      "Pumpwell traffic: even the buffering circle reached home before this reflection.",
+      "Neer dosa: full coverage, no premium edition.",
+      "The Arabian Sea sent a humidity advisory. Billing called it a feature.",
+      "Goli baje rises in hot oil; our launch rose in the slide deck.",
+      "At Panambur, the wind performs better than our hair simulator.",
+      "KS Rao Road has fewer redirects than this cancellation policy."
     ];
 
     let keynoteIdx = 0;
@@ -3232,7 +3275,7 @@
     const speakerNotes = [
       `0:00 · ${CONFIG.MEMBERS[0]} — Introduce the product and the 25 GB premise.`,
       `0:20 · ${CONFIG.MEMBERS[0]} — Explain the intentionally absurd download size.`,
-      `0:50 · ${CONFIG.MEMBERS[1]} — Toggle Silver and Gold live; describe the 45% aperture.`,
+      `0:50 · ${CONFIG.MEMBERS[1]} — Show full view in both editions; point out Gold's extra photon.`,
       `1:25 · ${CONFIG.MEMBERS[1]} — Skip two months and read the new version and size.`,
       `1:55 · ${CONFIG.MEMBERS[2]} — Show the removal fee and keep the outcome cosmetic.`,
       `2:25 · ${CONFIG.MEMBERS[2]} — Explain why a mirror app is deliberately useless.`,
@@ -3370,7 +3413,10 @@
         modalBill.classList.remove('active');
         aboutModal.classList.remove('active');
         updatesSheet.classList.remove('active');
-        if (!document.getElementById('installer-gate').hidden) document.getElementById('btn-installer-skip').click();
+        if (!document.getElementById('installer-gate').hidden) {
+          if (document.getElementById('installer-checkout').hidden) document.getElementById('btn-installer-skip').click();
+          else showToast('Demo checkout required. Charged: $0. Click Pay $500 (demo) to start.');
+        }
         else if (keynoteOverlay.classList.contains('active')) stopKeynote();
       } else if (keynoteOverlay.classList.contains('active') && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) {
         showKeynoteSlide(keynoteIndex + (e.key === 'ArrowRight' ? 1 : -1));

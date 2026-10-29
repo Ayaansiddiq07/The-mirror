@@ -1,6 +1,6 @@
-// Service Worker for The Mirror v4.3.10
+// Service Worker for The Mirror v4.3.11
 
-const CACHE_NAME = 'the-mirror-v4.3.10';
+const CACHE_NAME = 'the-mirror-v4.3.11';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

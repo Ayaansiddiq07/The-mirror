@@ -21,7 +21,8 @@
 - Gold now opens a $500 demo invoice and stays Silver until the demo confirmation is clicked. The prompt and post-upgrade reflection caption include the Hindi/Hinglish dev-team joke; actual charge remains $0 with no card fields.
 - Added `INTERACTION_VOICEOVER.md` as the cue map for Gold, delete, and all seven Kudla recordings.
 - Added the supplied Gold, delete, seven Kudla, and keynote recordings; playback uses the shared compressed audio path, and all MP3 files are precached for offline use.
-- Matched the package, About panel, and service-worker cache at v4.3.10.
+- Added an audible `file://` preview path for browsers that mute media routed through Web Audio on opaque file origins. Direct preview is capped at 0.15; deployed playback stays on the master gain/compressor.
+- Matched the package, About panel, and service-worker cache at v4.3.11.
 - Removed the stale LAN IP, replaced the old QR with a marked deployment placeholder, and made the share dialog display `location.origin`.
 - Rewrote README and added this change log and a 3-minute speaker script.
 - Added an optional port argument to the local server because port 8000 is reserved in the current environment; default remains 8000.
@@ -52,6 +53,6 @@
 - `app.js` is present but the page uses its inline script; it remains unchanged.
 - `.arena/`, `ARENA_REVIEW.md`, `APP_BUILD_PROMPT.md`, `PITCH_SCRIPT.md`, and `VIDEO_STORYBOARD.md` are existing support artifacts outside this implementation.
 - The mirror screen still contains optional experimental controls beyond the two headline editions.
-- `keynote_voiceover.mp3` and the nine clips in `interaction_voiceover/` are the supplied audio assets used by v4.3.10.
+- `keynote_voiceover.mp3` and the nine clips in `interaction_voiceover/` are the supplied audio assets used by v4.3.11.
 - The live Vercel URL and four member names were not supplied. `CONFIG.DEPLOY_URL` and `CONFIG.MEMBERS` are editable placeholders; regenerate `qr-code.svg` after deployment.
 

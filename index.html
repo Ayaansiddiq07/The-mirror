@@ -1987,8 +1987,20 @@
     </div>
   </div>
 
+  <div id="modal-gold-upgrade" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="gold-upgrade-title">
+    <div class="modal-card">
+      <button id="btn-close-gold-x" class="modal-close-icon" aria-label="Close Gold upgrade offer">×</button>
+      <p class="eyebrow">THE MIRROR · GOLD EDITION</p>
+      <h3 id="gold-upgrade-title" class="modal-title">One photon. Premium invoice.</h3>
+      <p class="modal-desc">Gold demo upgrade: <strong>$500</strong>. Adds a gold rim and one imaginary photon. This is a joke checkout: no card details, no real payment, and $0 actually charged.</p>
+      <p class="modal-desc" lang="hi">“Bas upgrade mein kuch naya nahi hua, saar—sirf dev team ka ghar chal gaya.”</p>
+      <button id="btn-confirm-gold" class="btn-solid-white" style="width:100%">Pay $500 (demo) · $0 charged</button>
+      <button id="btn-cancel-gold" class="btn-glass" style="width:100%;margin-top:.6rem">Maybe later · keep Silver</button>
+    </div>
+  </div>
+
   <div id="modal-about" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="About The Mirror">
-      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.8</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
+      <div class="modal-card"><button id="btn-close-about" class="modal-close-icon" aria-label="Close About">×</button><h3 class="modal-title">The Mirror · v4.3.9</h3><p class="modal-desc">Bearys Institute · MAD HACKS 2026 · Theme 3: Useless Software</p><p class="modal-desc">A local, offline-capable mirror demo. Camera frames stay on this device.</p><button id="btn-about-done" class="btn-solid-white" style="width:100%">Close</button></div>
   </div>
   <div id="updates-sheet" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Update history">
     <div class="modal-card"><button id="btn-close-updates" class="modal-close-icon" aria-label="Close update history">×</button><h3 class="modal-title">Update history</h3><div id="updates-history" class="specs-grid"><div class="spec-desc">v4.3 · 25 GB · Initial reflection package</div></div><button id="btn-updates-done" class="btn-solid-white" style="width:100%">Close</button></div>
@@ -2005,9 +2017,9 @@
       DEPLOY_URL: '',
       TOOLS_USED: ['HTML, CSS, JavaScript', 'Node.js', 'Chromium', 'Codex AI assistant', 'Claude AI assistant'],
       VOICEOVER_URL: '',
-      VERSION: '4.3.8'
+      VERSION: '4.3.9'
     };
-    const INDEX_BYTES = 147478; // Refreshed to the saved HTML byte size for the installer reveal.
+    const INDEX_BYTES = 149800; // Refreshed to the saved HTML byte size for the installer reveal.
 
     // ============================================================
     // 1. WEB AUDIO SYNTHESIZER (100% Offline, Native Zero-Dependency FX)
@@ -2413,6 +2425,7 @@
     const billRendering = document.getElementById('bill-rendering');
     const billTax = document.getElementById('bill-tax');
     const billTotalDue = document.getElementById('bill-total-due');
+    const modalGoldUpgrade = document.getElementById('modal-gold-upgrade');
 
     // Use the current origin; a deployed QR target is added when the site is hosted.
     const currentOrigin = window.location.origin;
@@ -2476,6 +2489,11 @@
 
     function openRemovalModal() {
       document.getElementById('modal-bill').classList.add('active');
+    }
+
+    function requestGoldUpgrade() {
+      if (state.tierIndex === 1) return;
+      modalGoldUpgrade.classList.add('active');
     }
 
     function startInstallerGate() {
@@ -2873,14 +2891,31 @@
       btnRevertSilver.hidden = (state.tierIndex === 0);
       btnToggleGold.classList.toggle('edition-gold', state.tierIndex === 1);
       keynoteOverlay.classList.toggle('is-gold', state.tierIndex === 1);
-      showToast(state.tierIndex === 1 ? 'Gold: full reflection, gold rim, one extra photon. Charged: $0.' : 'Silver: the full reflection, in full.');
+      if (state.tierIndex === 0) showToast('Silver: the full reflection, in full.');
       const keynoteEdition = document.querySelector('[data-keynote-action="edition"]');
       if (keynoteEdition) keynoteEdition.textContent = state.tierIndex === 1 ? 'Switch to Silver' : 'Switch to Gold';
     }
 
-    btnToggleGold.addEventListener('click', () => {
-      state.tierIndex = state.tierIndex === 0 ? 1 : 0;
+    function confirmGoldUpgrade() {
+      modalGoldUpgrade.classList.remove('active');
+      state.tierIndex = 1;
       updateTierUI();
+      subtitlesText.textContent = 'Bas upgrade mein kuch naya nahi hua, saar—sirf dev team ka ghar chal gaya. Demo: $500 bola, asli charge $0.';
+      subtitlesBanner.hidden = false;
+      clearTimeout(subtitlesBanner._timer);
+      subtitlesBanner._timer = setTimeout(() => { subtitlesBanner.hidden = true; }, 6500);
+      showToast('Gold activated. Demo invoice: $500 · actually charged: $0.');
+    }
+
+    btnToggleGold.addEventListener('click', () => {
+      if (state.tierIndex === 0) requestGoldUpgrade();
+      else { state.tierIndex = 0; updateTierUI(); }
+    });
+    document.getElementById('btn-confirm-gold').addEventListener('click', confirmGoldUpgrade);
+    document.getElementById('btn-cancel-gold').addEventListener('click', () => modalGoldUpgrade.classList.remove('active'));
+    document.getElementById('btn-close-gold-x').addEventListener('click', () => modalGoldUpgrade.classList.remove('active'));
+    modalGoldUpgrade.addEventListener('click', (event) => {
+      if (event.target === modalGoldUpgrade) modalGoldUpgrade.classList.remove('active');
     });
 
     btnRevertSilver.addEventListener('click', () => {
@@ -3463,7 +3498,10 @@
     });
     document.getElementById('keynote-frame').addEventListener('click', (event) => {
       const action = event.target.closest('[data-keynote-action]')?.dataset.keynoteAction;
-      if (action === 'edition') { state.tierIndex = state.tierIndex === 0 ? 1 : 0; updateTierUI(); }
+      if (action === 'edition') {
+        if (state.tierIndex === 0) requestGoldUpgrade();
+        else { state.tierIndex = 0; updateTierUI(); }
+      }
       if (action === 'update') skipTwoMonths();
       if (action === 'delete') openRemovalModal();
     });
@@ -3544,6 +3582,7 @@
         closeInstallGuide();
         modalEgo.classList.remove('active');
         modalBill.classList.remove('active');
+        modalGoldUpgrade.classList.remove('active');
         aboutModal.classList.remove('active');
         updatesSheet.classList.remove('active');
         if (!document.getElementById('installer-gate').hidden) {

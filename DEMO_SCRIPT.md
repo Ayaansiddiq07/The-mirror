@@ -4,6 +4,8 @@ Replace the four member placeholders in `CONFIG.MEMBERS` before presenting. Pres
 
 For a single narration track, use [KEYNOTE_VOICEOVER.md](KEYNOTE_VOICEOVER.md). The keynote’s visible final slide no longer includes member placeholders or long credits. After generating the audio, add `assets/keynote-voiceover.mp3`, set `CONFIG.VOICEOVER_URL` to `./assets/keynote-voiceover.mp3`, and add that file to the service-worker precache to reveal the offline-ready play button.
 
+For one ElevenLabs recording of the Gold, delete, and all seven Kudla captions, use [INTERACTION_VOICEOVER.md](INTERACTION_VOICEOVER.md). Keep its numbered cue order and pauses so the track can be cut into matching clips later.
+
 | Time / slide | Speaker | Talk track |
 |---|---|---|
 | 0:00 · 1 | Member 1 | “This is The Mirror: a 25 GB download that shows you your own face. The $500 trial checkout is required to start the demo. The button says Pay; the receipt says zero. Finance calls that a successful conversion.” Tap Pay $500 (demo), open the mirror, and let the Kudla caption land. |

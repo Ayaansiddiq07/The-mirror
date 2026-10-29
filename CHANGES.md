@@ -18,6 +18,9 @@
 - Added `KEYNOTE_VOICEOVER.md` with timed narration and a configurable voice-over play button. The button stays hidden until a generated audio asset is supplied; playback uses the shared gain/compressor path.
 - Matched the package, visible release, and service-worker cache at v4.3.8; precached the QR asset and retained activation-time eviction of older caches.
 - Reworked the Kudla jokes to target the product and its pricing, using six local references across Pumpwell, monsoon humidity, Hampankatta, Kudla, Bearys Institute, and MAD HACKS.
+- Gold now opens a $500 demo invoice and stays Silver until the demo confirmation is clicked. The prompt and post-upgrade reflection caption include the Hindi/Hinglish dev-team joke; actual charge remains $0 with no card fields.
+- Added `INTERACTION_VOICEOVER.md` with a single-track ElevenLabs script for the Gold upgrade, delete prompt, and all seven Kudla captions, separated by cut-friendly silence cues.
+- Matched the package, About panel, and service-worker cache at v4.3.9.
 - Removed the stale LAN IP, replaced the old QR with a marked deployment placeholder, and made the share dialog display `location.origin`.
 - Rewrote README and added this change log and a 3-minute speaker script.
 - Added an optional port argument to the local server because port 8000 is reserved in the current environment; default remains 8000.

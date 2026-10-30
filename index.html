@@ -579,6 +579,77 @@
       padding: 0.4rem 0;
     }
 
+    /* Small Kudla-sidekick lives beside the reflection, never inside the video. */
+    .smile-buddy {
+      position: absolute;
+      left: calc(50% + min(39vw, 230px) + 1rem);
+      top: 50%;
+      width: min(190px, 19vw);
+      min-width: 145px;
+      transform: translateY(-50%);
+      display: grid;
+      justify-items: center;
+      gap: .55rem;
+      z-index: 8;
+      text-align: center;
+    }
+    .smile-buddy-bubble {
+      position: relative;
+      width: 100%;
+      padding: .75rem .8rem;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 16px;
+      background: rgba(20,20,23,.92);
+      color: #f5f5f7;
+      box-shadow: 0 10px 30px #0008;
+      font-size: .82rem;
+      line-height: 1.4;
+      backdrop-filter: blur(14px);
+    }
+    .smile-buddy-bubble::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -6px;
+      width: 10px;
+      height: 10px;
+      background: #141417;
+      border-right: 1px solid rgba(255,255,255,.2);
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      transform: translateX(-50%) rotate(45deg);
+    }
+    .smile-buddy-avatar {
+      width: 94px;
+      height: 112px;
+      filter: drop-shadow(0 10px 20px #0009);
+      animation: buddyBob 3s ease-in-out infinite;
+    }
+    @keyframes buddyBob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-5px) rotate(2deg); } }
+    .smile-buddy-action {
+      min-height: 34px;
+      padding: .45rem .8rem;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      font-size: .72rem;
+      transition: background .2s, transform .2s;
+    }
+    .smile-buddy-action:hover { background: rgba(255,255,255,.2); transform: translateY(-1px); }
+    .smile-buddy-note { color: #9b9ba1; font-size: .62rem; line-height: 1.3; }
+    #screen-mirror.gold-edition .smile-buddy-bubble { border-color: var(--gold-border); }
+    #screen-mirror.gold-edition .smile-buddy-action { border-color: var(--gold-border); color: var(--gold-light); }
+    @media (max-width: 760px) {
+      .smile-buddy { left: auto; right: .25rem; top: auto; bottom: .25rem; width: 118px; min-width: 0; transform: none; gap: .35rem; }
+      .smile-buddy-bubble { padding: .55rem .6rem; font-size: .7rem; border-radius: 13px; }
+      .smile-buddy-avatar { width: 66px; height: 78px; }
+      .smile-buddy-action { min-height: 30px; font-size: .66rem; padding: .35rem .6rem; }
+      .smile-buddy-note { font-size: .55rem; }
+    }
+    @media (max-width: 380px) {
+      .smile-buddy { width: 102px; right: 0; bottom: 0; }
+      .smile-buddy-avatar { width: 54px; height: 64px; }
+    }
+
     #mirror-viewport {
       position: relative;
       width: min(82vw, 420px);
@@ -1677,6 +1748,25 @@
           </button>
         </div>
       </div>
+      <aside class="smile-buddy" aria-label="Kudla smile buddy">
+        <div id="smile-buddy-bubble" class="smile-buddy-bubble" aria-live="polite">Smile a little bit, saar 🙂</div>
+        <svg class="smile-buddy-avatar" viewBox="0 0 100 120" role="img" aria-label="A cheerful cartoon Mangalorean sidekick">
+          <ellipse cx="50" cy="114" rx="31" ry="5" fill="#000" opacity=".35"/>
+          <path d="M25 91c1-19 10-28 25-28s24 9 25 28v17H25z" fill="#d76a43" stroke="#f1b397" stroke-width="2"/>
+          <path d="M37 67l13 15 13-15" fill="#f7eee0"/>
+          <path d="M34 96h32v12H34z" fill="#f3c969"/>
+          <path d="M20 41c0-20 13-32 30-32s30 12 30 32v15c0 18-13 29-30 29S20 74 20 56z" fill="#b9754c" stroke="#f0c19a" stroke-width="2"/>
+          <path d="M18 44c-2-21 11-37 32-37 17 0 31 12 32 34-7-8-13-12-24-13-11 8-25 10-40 8z" fill="#25211f"/>
+          <path d="M30 49c5-4 10-4 15 0M55 49c5-4 10-4 15 0" fill="none" stroke="#35251f" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="39" cy="56" rx="3" ry="4" fill="#211b19"/><ellipse cx="62" cy="56" rx="3" ry="4" fill="#211b19"/>
+          <path d="M39 68c7 7 16 8 24 0" fill="none" stroke="#6d2927" stroke-width="3" stroke-linecap="round"/>
+          <path d="M34 66c5 2 9 2 15 0 5 2 10 2 16 0-2 9-8 13-16 13S36 75 34 66z" fill="#34231f"/>
+          <circle cx="50" cy="69" r="2" fill="#e5bc6c"/>
+          <path d="M23 31c7-11 17-16 28-16" fill="none" stroke="#f7d98e" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <button id="smile-buddy-action" class="smile-buddy-action" type="button">I smiled! 😄</button>
+        <span class="smile-buddy-note">Tap when you smile · no face scanning</span>
+      </aside>
     </div>
 
     <!-- Floating Glass Island Control Dock -->
@@ -3183,6 +3273,35 @@
     }
     document.getElementById('btn-kudla').addEventListener('click', () => {
       showReflectionKudlaJoke();
+    });
+
+    const smileBuddyBubble = document.getElementById('smile-buddy-bubble');
+    const smileBuddyAction = document.getElementById('smile-buddy-action');
+    const SMILE_BUDDY_JOKES = [
+      'Aiyo, smile super! Pumpwell signal kittid, saar 🚦',
+      'Hampankatta traffic-alli kuda itna patience illa, boss.',
+      'Face full HD. Confidence Gold edition. Bill abhi bhi $500.',
+      'Monsoon barse ya na barse, smile waterproof hai, saar.',
+      'Bas, ab serious face. Mirror ko laga tu uska bill dekh liya.',
+      'Good smile! Kudla breeze free hai; extra photon Gold mein.'
+    ];
+    let smileBuddyStep = 0;
+    smileBuddyAction.addEventListener('click', () => {
+      if (smileBuddyStep === 0) {
+        smileBuddyBubble.textContent = 'Good smile, saar! Full cinema hero 😄 Ab smile mat karo… mirror serious banne ki koshish kar raha hai.';
+        smileBuddyAction.textContent = 'I won’t 😐';
+        smileBuddyStep = 1;
+        return;
+      }
+      if (smileBuddyStep === 1) {
+        smileBuddyBubble.textContent = SMILE_BUDDY_JOKES[Math.floor(Math.random() * SMILE_BUDDY_JOKES.length)];
+        smileBuddyAction.textContent = 'One more smile';
+        smileBuddyStep = 2;
+        return;
+      }
+      smileBuddyBubble.textContent = 'Smile a little bit, saar 🙂';
+      smileBuddyAction.textContent = 'I smiled! 😄';
+      smileBuddyStep = 0;
     });
 
     // 2. Interactive Housefly

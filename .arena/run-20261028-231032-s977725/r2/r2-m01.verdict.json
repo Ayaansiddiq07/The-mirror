@@ -1,0 +1,14 @@
+{
+  "match": "r2-m01",
+  "scores": {
+    "a013": {"correctness": 7, "completeness": 9, "specificity": 8, "robustness": 7, "clarity": 9, "fatal": false},
+    "a003": {"correctness": 9, "completeness": 9, "specificity": 9, "robustness": 9, "clarity": 8, "fatal": false}
+  },
+  "winner": "a003",
+  "reason": "a003 wins by identifying and precisely handling the camera remaining live while the exit joke is open, while also distinguishing the browser demo from a standalone phone app.",
+  "survived": ["camera exit lifecycle overstatement withdrawn and corrected"],
+  "standing": {
+    "a013": ["does not flag that opening or dismissing the exit dialog leaves the camera preview live"],
+    "a003": []
+  }
+}

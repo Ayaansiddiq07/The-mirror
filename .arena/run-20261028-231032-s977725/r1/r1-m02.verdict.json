@@ -1,0 +1,30 @@
+{
+  "match": "r1-m02",
+  "scores": {
+    "a009": {
+      "correctness": 9,
+      "completeness": 10,
+      "specificity": 9,
+      "robustness": 10,
+      "clarity": 9,
+      "fatal": false
+    },
+    "a008": {
+      "correctness": 9,
+      "completeness": 9,
+      "specificity": 9,
+      "robustness": 10,
+      "clarity": 9,
+      "fatal": false
+    }
+  },
+  "winner": "a009",
+  "reason": "A009 more explicitly separates verified runtime facts from script claims while covering the one-time preview and every safety and timing constraint.",
+  "survived": [
+    "A009: trial omission—fixed by explicit first-run-preview note"
+  ],
+  "standing": {
+    "a009": [],
+    "a008": []
+  }
+}

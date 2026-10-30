@@ -1,0 +1,33 @@
+{
+  "match": "r2-m04",
+  "scores": {
+    "a012": {
+      "correctness": 9,
+      "completeness": 9,
+      "specificity": 10,
+      "robustness": 10,
+      "clarity": 9,
+      "fatal": false
+    },
+    "a016": {
+      "correctness": 8,
+      "completeness": 9,
+      "specificity": 8,
+      "robustness": 4,
+      "clarity": 8,
+      "fatal": false
+    }
+  },
+  "winner": "a012",
+  "reason": "a012 gives concrete, transition-aware word caps and makes the 30-second film earn its time, while a016 leaves the opening's value and handoff timing unresolved.",
+  "survived": [
+    "room tone removed from the required silent opening"
+  ],
+  "standing": {
+    "a012": [],
+    "a016": [
+      "opening film value judgment remains conditional only on a title reveal, without requiring early app proof",
+      "handoff and toggle time is not budgeted; pricing block runs 70–85 words in 40 seconds"
+    ]
+  }
+}

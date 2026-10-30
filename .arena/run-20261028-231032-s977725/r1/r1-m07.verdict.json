@@ -1,0 +1,30 @@
+{
+  "match": "r1-m07",
+  "scores": {
+    "a011": {
+      "correctness": 9,
+      "completeness": 9,
+      "specificity": 9,
+      "robustness": 10,
+      "clarity": 9,
+      "fatal": false
+    },
+    "a013": {
+      "correctness": 9,
+      "completeness": 10,
+      "specificity": 9,
+      "robustness": 10,
+      "clarity": 9,
+      "fatal": false
+    }
+  },
+  "winner": "a013",
+  "reason": "Both revisions fix their attacks, but a013 covers the one-time trial assumption and adds concrete safeguards for the extras control and camera stream.",
+  "survived": [
+    "restored the assigned timing windows"
+  ],
+  "standing": {
+    "a011": [],
+    "a013": []
+  }
+}

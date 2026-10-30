@@ -1,0 +1,11 @@
+{
+  "match": "r2-m03",
+  "scores": {
+    "a007": {"correctness": 9, "completeness": 8, "specificity": 8, "robustness": 10, "clarity": 9, "fatal": false},
+    "a009": {"correctness": 9, "completeness": 10, "specificity": 9, "robustness": 10, "clarity": 7, "fatal": false}
+  },
+  "winner": "a009",
+  "reason": "a009 gives a more complete, timed revision of the spoken pitch and explicitly covers safeguards such as no device locking, while a007 is tighter but leaves more implementation and script details implicit.",
+  "survived": [],
+  "standing": {"a007": [], "a009": []}
+}

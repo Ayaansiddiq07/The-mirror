@@ -1,0 +1,11 @@
+{
+  "match": "r1-m08",
+  "scores": {
+    "a015": {"correctness": 8, "completeness": 8, "specificity": 9, "robustness": 8, "clarity": 8, "fatal": false},
+    "a003": {"correctness": 9, "completeness": 9, "specificity": 8, "robustness": 10, "clarity": 9, "fatal": false}
+  },
+  "winner": "a003",
+  "reason": "a003 grounds its pitch advice in the actual browser prototype and fixes the misleading disclaimer critique, while a015's polished script still calls it a phone app and omits the first-run trial caveat.",
+  "survived": ["Corrected the download-disclaimer critique and points judges to the existing on-slide disclosure"],
+  "standing": {"a015": [], "a003": []}
+}

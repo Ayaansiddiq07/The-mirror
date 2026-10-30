@@ -1,0 +1,11 @@
+{
+  "match": "r1-m04",
+  "scores": {
+    "a001": {"correctness": 9, "completeness": 9, "specificity": 8, "robustness": 4, "clarity": 9, "fatal": false},
+    "a007": {"correctness": 8, "completeness": 9, "specificity": 9, "robustness": 10, "clarity": 9, "fatal": false}
+  },
+  "winner": "a007",
+  "reason": "a007 explicitly keeps the download and deletion-fee gags on-screen and resolves the trial ambiguity, while a001 leaves a major timing risk in the pricing beat.",
+  "survived": ["pricing gags remain on-screen to protect the 40-second slot", "trial labeled as a one-time first-run preview"],
+  "standing": {"a001": ["pricing guidance does not clearly prevent added gags from overloading the 40-second segment"], "a007": []}
+}

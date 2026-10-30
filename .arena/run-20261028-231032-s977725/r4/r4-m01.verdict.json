@@ -1,0 +1,11 @@
+{
+  "match": "r4-m01",
+  "scores": {
+    "a003": {"correctness": 10, "completeness": 10, "specificity": 9, "robustness": 10, "clarity": 8, "fatal": false},
+    "a010": {"correctness": 9, "completeness": 8, "specificity": 8, "robustness": 10, "clarity": 9, "fatal": false}
+  },
+  "winner": "a003",
+  "reason": "a003 gives a concrete pending-permission race fix and covers the full safety and demo risks while a010 omits device-lock and film-safety checks.",
+  "survived": ["camera pending-permission race flagged with stale-stream stop recommendation"],
+  "standing": {"a003": [], "a010": []}
+}

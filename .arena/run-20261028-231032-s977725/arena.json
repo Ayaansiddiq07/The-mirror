@@ -1,0 +1,708 @@
+{
+ "version": 1,
+ "created": "2026-10-28 23:10:32",
+ "seed": 977725,
+ "agents_n": 16,
+ "cards_available": 2160,
+ "wave": 10,
+ "dir": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725",
+ "has_baseline": false,
+ "agents": {
+  "a001": {
+   "card": {
+    "reasoning": {
+     "id": "socratic",
+     "name": "Socratic",
+     "how": "Interrogate the task with the questions a sharp expert would ask before starting. Answer each one explicitly and let the answers decide the shape of the solution."
+    },
+    "workflow": {
+     "id": "build-then-break",
+     "name": "Build, then break",
+     "how": "Build the answer. Then throw five hostile inputs or scenarios at it, write down what breaks, and patch every break."
+    },
+    "strategy": {
+     "id": "completeness",
+     "name": "Completeness",
+     "how": "Leave out nothing the task asks for or clearly implies. Cover every requirement explicitly."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m04.a001.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a007",
+   "byes": 0
+  },
+  "a002": {
+   "card": {
+    "reasoning": {
+     "id": "systems-thinking",
+     "name": "Systems thinking",
+     "how": "Map the moving parts, how they affect each other, and what happens second and third order. Optimise the whole system, not just the one part the task points at."
+    },
+    "workflow": {
+     "id": "options-matrix",
+     "name": "Options matrix",
+     "how": "List the realistic options, score them in a small matrix against the criteria that matter for this task, choose one, and write up the choice."
+    },
+    "strategy": {
+     "id": "explicit-trade-offs",
+     "name": "Explicit trade-offs",
+     "how": "Name the real trade-offs, choose for the user's most likely constraints, and say plainly what that choice gives up."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m05.a002.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a010",
+   "byes": 0
+  },
+  "a003": {
+   "card": {
+    "reasoning": {
+     "id": "evidence-first",
+     "name": "Evidence first",
+     "how": "Ground every claim in something checkable: the task text, the files it points to, the numbers given, documentation. Anything you cannot check gets labelled as an assumption."
+    },
+    "workflow": {
+     "id": "outline-first",
+     "name": "Outline first",
+     "how": "Write a skeleton outline, check the outline against every requirement in the task, fix it, and only then fill it in."
+    },
+    "strategy": {
+     "id": "user-empathy",
+     "name": "User empathy first",
+     "how": "Start from the person who will use this: their situation, their skill level, and what they will actually do next. Shape everything around that."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r4\\r4-m01.a003.solution.md",
+   "alive": true,
+   "eliminated_in": null,
+   "eliminated_by": null,
+   "byes": 0
+  },
+  "a004": {
+   "card": {
+    "reasoning": {
+     "id": "decomposition",
+     "name": "Decomposition",
+     "how": "Break the task into independent sub-problems. Solve each one completely, then integrate them and test the seams where they meet."
+    },
+    "workflow": {
+     "id": "iterative-deepening",
+     "name": "Iterative deepening",
+     "how": "Write a one-paragraph answer first. Then expand the parts that matter most in two more passes, each one deeper than the last."
+    },
+    "strategy": {
+     "id": "built-to-last",
+     "name": "Built to last",
+     "how": "Optimise for how this holds up in six months: easy to maintain, easy to extend, no traps for the next person."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r2\\r2-m02.a004.solution.md",
+   "alive": false,
+   "eliminated_in": 2,
+   "eliminated_by": "a010",
+   "byes": 0
+  },
+  "a005": {
+   "card": {
+    "reasoning": {
+     "id": "worked-example",
+     "name": "Worked example",
+     "how": "Solve one concrete, realistic instance end to end first, with real values. Generalise only from what that example actually taught you."
+    },
+    "workflow": {
+     "id": "research-then-synthesise",
+     "name": "Research, then synthesise",
+     "how": "Gather every relevant fact first: the task, any files or context it points to, what is known about the domain. Write nothing until the research is done, then synthesise."
+    },
+    "strategy": {
+     "id": "speed",
+     "name": "Speed",
+     "how": "Optimise for the fastest route to something usable today. Cut anything that does not move the result."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m03.a005.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a012",
+   "byes": 0
+  },
+  "a006": {
+   "card": {
+    "reasoning": {
+     "id": "working-backwards",
+     "name": "Working backwards",
+     "how": "Describe the finished result precisely, as if it already exists. Then work backwards, step by step, to where the user is right now."
+    },
+    "workflow": {
+     "id": "build-then-break",
+     "name": "Build, then break",
+     "how": "Build the answer. Then throw five hostile inputs or scenarios at it, write down what breaks, and patch every break."
+    },
+    "strategy": {
+     "id": "maximal-rigour",
+     "name": "Maximal rigour",
+     "how": "Be exhaustive and exact. Check every step, verify every claim, and leave no hand-waving anywhere."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m01.a006.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a004",
+   "byes": 0
+  },
+  "a007": {
+   "card": {
+    "reasoning": {
+     "id": "first-principles",
+     "name": "First principles",
+     "how": "Strip the task down to the facts and requirements nobody can argue with. Rebuild the answer from those alone, and keep a convention only if it earns its place again."
+    },
+    "workflow": {
+     "id": "smallest-version-first",
+     "name": "Smallest version first",
+     "how": "Produce the smallest complete version that actually works. Then extend it one step at a time, keeping it working after every step."
+    },
+    "strategy": {
+     "id": "built-to-last",
+     "name": "Built to last",
+     "how": "Optimise for how this holds up in six months: easy to maintain, easy to extend, no traps for the next person."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r2\\r2-m03.a007.solution.md",
+   "alive": false,
+   "eliminated_in": 2,
+   "eliminated_by": "a009",
+   "byes": 0
+  },
+  "a008": {
+   "card": {
+    "reasoning": {
+     "id": "dialectical",
+     "name": "Dialectical",
+     "how": "State the strongest version of one answer, then the strongest opposing answer, then write the synthesis that keeps what is true in both."
+    },
+    "workflow": {
+     "id": "open-questions-first",
+     "name": "Open questions first",
+     "how": "List every open question the task leaves. Resolve each one with reasoning or a stated assumption, then answer."
+    },
+    "strategy": {
+     "id": "simplest",
+     "name": "Simplest thing that works",
+     "how": "Pick the least complicated answer that fully does the job. Every extra part has to justify itself."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m02.a008.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a009",
+   "byes": 0
+  },
+  "a009": {
+   "card": {
+    "reasoning": {
+     "id": "probabilistic",
+     "name": "Probabilistic",
+     "how": "Treat every claim and choice as uncertain. Weigh what is likely, prefer what holds up across most scenarios, and state your confidence where it changes the decision."
+    },
+    "workflow": {
+     "id": "requirements-checklist",
+     "name": "Requirements checklist",
+     "how": "Pull every requirement out of the task into a numbered list. Solve, then tick each item off and say exactly where it is met."
+    },
+    "strategy": {
+     "id": "defensive",
+     "name": "Defensive",
+     "how": "Assume the inputs are bad and the conditions are hostile. Make the answer fail safely and loudly rather than quietly."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r3\\r3-m02.a009.solution.md",
+   "alive": false,
+   "eliminated_in": 3,
+   "eliminated_by": "a003",
+   "byes": 0
+  },
+  "a010": {
+   "card": {
+    "reasoning": {
+     "id": "adversarial",
+     "name": "Adversarial",
+     "how": "Picture the harshest expert reviewer trying to tear the answer apart. Write their attacks down first and build the answer backwards from them."
+    },
+    "workflow": {
+     "id": "test-first",
+     "name": "Test first",
+     "how": "Before writing the answer, write the checks it must pass: acceptance tests for code, pass or fail criteria for anything else. Then write the answer and run every check against it."
+    },
+    "strategy": {
+     "id": "edge-cases-first",
+     "name": "Edge cases first",
+     "how": "Hunt the edge cases, failure modes and weird inputs first, and design the answer around surviving them."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r4\\r4-m01.a010.solution.md",
+   "alive": false,
+   "eliminated_in": 4,
+   "eliminated_by": "a003",
+   "byes": 0
+  },
+  "a011": {
+   "card": {
+    "reasoning": {
+     "id": "expert-panel",
+     "name": "Expert panel",
+     "how": "Answer the task as three different experts would, picking roles that fit it. Take the strongest idea from each and settle every point where they disagree."
+    },
+    "workflow": {
+     "id": "iterative-deepening",
+     "name": "Iterative deepening",
+     "how": "Write a one-paragraph answer first. Then expand the parts that matter most in two more passes, each one deeper than the last."
+    },
+    "strategy": {
+     "id": "completeness",
+     "name": "Completeness",
+     "how": "Leave out nothing the task asks for or clearly implies. Cover every requirement explicitly."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m07.a011.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a013",
+   "byes": 0
+  },
+  "a012": {
+   "card": {
+    "reasoning": {
+     "id": "contrarian",
+     "name": "Contrarian",
+     "how": "Write down the obvious default answer, then argue seriously against it. Keep only what survives the argument, even if that takes you the unpopular way."
+    },
+    "workflow": {
+     "id": "draft-critique-rewrite",
+     "name": "Draft, critique, rewrite",
+     "how": "Write a complete first draft. Critique it line by line against the task as if someone else wrote it. Then rewrite it from scratch using the critique."
+    },
+    "strategy": {
+     "id": "clarity",
+     "name": "Clarity above all",
+     "how": "Make it the easiest answer to read and act on: plain words, obvious structure, nothing the reader has to decode."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r3\\r3-m01.a012.solution.md",
+   "alive": false,
+   "eliminated_in": 3,
+   "eliminated_by": "a010",
+   "byes": 0
+  },
+  "a013": {
+   "card": {
+    "reasoning": {
+     "id": "inversion",
+     "name": "Inversion",
+     "how": "Ask what would make this answer fail. List every way it could, then build the answer that makes each of those failures impossible."
+    },
+    "workflow": {
+     "id": "write-then-restructure",
+     "name": "Write, then restructure",
+     "how": "Write freely and fast. Then outline what you actually wrote, fix the structure, and rewrite it to the new outline."
+    },
+    "strategy": {
+     "id": "concrete-specifics",
+     "name": "Concrete specifics",
+     "how": "Exact numbers, names, commands, file paths and steps. Zero generic advice."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r2\\r2-m01.a013.solution.md",
+   "alive": false,
+   "eliminated_in": 2,
+   "eliminated_by": "a003",
+   "byes": 0
+  },
+  "a014": {
+   "card": {
+    "reasoning": {
+     "id": "constraint-first",
+     "name": "Constraint first",
+     "how": "List every hard constraint, stated and implied: time, budget, tools, format, audience, platform. Solve strictly inside that box and let the tightest constraint drive the design."
+    },
+    "workflow": {
+     "id": "three-drafts",
+     "name": "Three drafts, pick one",
+     "how": "Write three short, genuinely different approaches. Pick the strongest on the task's own terms and develop only that one fully."
+    },
+    "strategy": {
+     "id": "fewest-moving-parts",
+     "name": "Fewest moving parts",
+     "how": "Remove things until it breaks, then put the last one back. Fewer steps, fewer dependencies, fewer words."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m06.a014.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a016",
+   "byes": 0
+  },
+  "a015": {
+   "card": {
+    "reasoning": {
+     "id": "analogy",
+     "name": "Analogy",
+     "how": "Find a problem in a different field that has already been solved and has the same shape. Port its solution over, then fix every place where the analogy breaks."
+    },
+    "workflow": {
+     "id": "smallest-version-first",
+     "name": "Smallest version first",
+     "how": "Produce the smallest complete version that actually works. Then extend it one step at a time, keeping it working after every step."
+    },
+    "strategy": {
+     "id": "simplest",
+     "name": "Simplest thing that works",
+     "how": "Pick the least complicated answer that fully does the job. Every extra part has to justify itself."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r1\\r1-m08.a015.solution.md",
+   "alive": false,
+   "eliminated_in": 1,
+   "eliminated_by": "a003",
+   "byes": 0
+  },
+  "a016": {
+   "card": {
+    "reasoning": {
+     "id": "working-backwards",
+     "name": "Working backwards",
+     "how": "Describe the finished result precisely, as if it already exists. Then work backwards, step by step, to where the user is right now."
+    },
+    "workflow": {
+     "id": "open-questions-first",
+     "name": "Open questions first",
+     "how": "List every open question the task leaves. Resolve each one with reasoning or a stated assumption, then answer."
+    },
+    "strategy": {
+     "id": "concrete-specifics",
+     "name": "Concrete specifics",
+     "how": "Exact numbers, names, commands, file paths and steps. Zero generic advice."
+    }
+   },
+   "solution": "C:\\Users\\ayaan\\Documents\\ChatGPT\\mirror\\.arena\\run-20261028-231032-s977725\\r2\\r2-m04.a016.solution.md",
+   "alive": false,
+   "eliminated_in": 2,
+   "eliminated_by": "a012",
+   "byes": 0
+  }
+ },
+ "rounds": [
+  {
+   "n": 1,
+   "alive": [
+    "a001",
+    "a002",
+    "a003",
+    "a004",
+    "a005",
+    "a006",
+    "a007",
+    "a008",
+    "a009",
+    "a010",
+    "a011",
+    "a012",
+    "a013",
+    "a014",
+    "a015",
+    "a016"
+   ],
+   "matches": [
+    {
+     "id": "r1-m01",
+     "a": "a006",
+     "b": "a004",
+     "winner": "a004",
+     "loser": "a006",
+     "reason": "a004 resolves all three attacks, while a006 retains the unnecessarily exact 00:25 title cue and otherwise offers similar coverage.",
+     "survived": [
+      "keeps the film within its fixed slot",
+      "reframes the upgrades as pretend sales",
+      "makes the title timing flexible"
+     ],
+     "scores": {
+      "a006": 86.0,
+      "a004": 92.0
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r1-m02",
+     "a": "a009",
+     "b": "a008",
+     "winner": "a009",
+     "loser": "a008",
+     "reason": "A009 more explicitly separates verified runtime facts from script claims while covering the one-time preview and every safety and timing constraint.",
+     "survived": [
+      "A009: trial omission\u2014fixed by explicit first-run-preview note"
+     ],
+     "scores": {
+      "a009": 94.5,
+      "a008": 92.0
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r1-m03",
+     "a": "a012",
+     "b": "a005",
+     "winner": "a012",
+     "loser": "a005",
+     "reason": "a012 explicitly clarifies that the assumed one trial is a one-time first-run preview, while a005 only says to mention it conditionally.",
+     "survived": [
+      "Fixed: attack about shortening the opening; the revised pitch keeps the full 30-second slot."
+     ],
+     "scores": {
+      "a012": 92.0,
+      "a005": 89.5
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r1-m04",
+     "a": "a001",
+     "b": "a007",
+     "winner": "a007",
+     "loser": "a001",
+     "reason": "a007 explicitly keeps the download and deletion-fee gags on-screen and resolves the trial ambiguity, while a001 leaves a major timing risk in the pricing beat.",
+     "survived": [
+      "pricing gags remain on-screen to protect the 40-second slot",
+      "trial labeled as a one-time first-run preview"
+     ],
+     "scores": {
+      "a001": 78.5,
+      "a007": 89.0
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r1-m05",
+     "a": "a002",
+     "b": "a010",
+     "winner": "a010",
+     "loser": "a002",
+     "reason": "a010 gives more immediately usable spoken wording and a tighter demo-to-close plan while fixing the silent-film attack.",
+     "survived": [
+      "Silent 30-second opening specified with no audio"
+     ],
+     "scores": {
+      "a002": 91.0,
+      "a010": 93.5
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r1-m06",
+     "a": "a014",
+     "b": "a016",
+     "winner": "a016",
+     "loser": "a014",
+     "reason": "a016 gives the team a complete timed, four-speaker script and concrete UI fixes while preserving all required satirical and safety details; a014 is clearer and tighter but less directly ready to rehearse.",
+     "survived": [
+      "one-time first-run camera trial; repeat demo uses fallback"
+     ],
+     "scores": {
+      "a014": 92.0,
+      "a016": 95.0
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r1-m07",
+     "a": "a011",
+     "b": "a013",
+     "winner": "a013",
+     "loser": "a011",
+     "reason": "Both revisions fix their attacks, but a013 covers the one-time trial assumption and adds concrete safeguards for the extras control and camera stream.",
+     "survived": [
+      "restored the assigned timing windows"
+     ],
+     "scores": {
+      "a011": 92.0,
+      "a013": 94.5
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r1-m08",
+     "a": "a015",
+     "b": "a003",
+     "winner": "a003",
+     "loser": "a015",
+     "reason": "a003 grounds its pitch advice in the actual browser prototype and fixes the misleading disclaimer critique, while a015's polished script still calls it a phone app and omits the first-run trial caveat.",
+     "survived": [
+      "Corrected the download-disclaimer critique and points judges to the existing on-slide disclosure"
+     ],
+     "scores": {
+      "a015": 81.5,
+      "a003": 90.5
+     },
+     "source": "judge"
+    }
+   ],
+   "bye": null,
+   "closed": true
+  },
+  {
+   "n": 2,
+   "alive": [
+    "a003",
+    "a004",
+    "a007",
+    "a009",
+    "a010",
+    "a012",
+    "a013",
+    "a016"
+   ],
+   "matches": [
+    {
+     "id": "r2-m01",
+     "a": "a013",
+     "b": "a003",
+     "winner": "a003",
+     "loser": "a013",
+     "reason": "a003 wins by identifying and precisely handling the camera remaining live while the exit joke is open, while also distinguishing the browser demo from a standalone phone app.",
+     "survived": [
+      "camera exit lifecycle overstatement withdrawn and corrected"
+     ],
+     "scores": {
+      "a013": 78.5,
+      "a003": 89.0
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r2-m02",
+     "a": "a010",
+     "b": "a004",
+     "winner": "a010",
+     "loser": "a004",
+     "reason": "Both solutions fix the attacks, but a010 gives exact handoff timing and more ready-to-say wording, including a precise :30 start for speech after the silent film.",
+     "survived": [
+      "a004 attack: holds title through :30 and starts speech at :30"
+     ],
+     "scores": {
+      "a010": 99.0,
+      "a004": 94.5
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r2-m03",
+     "a": "a007",
+     "b": "a009",
+     "winner": "a009",
+     "loser": "a007",
+     "reason": "a009 gives a more complete, timed revision of the spoken pitch and explicitly covers safeguards such as no device locking, while a007 is tighter but leaves more implementation and script details implicit.",
+     "survived": [],
+     "scores": {
+      "a007": 88.0,
+      "a009": 92.5
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r2-m04",
+     "a": "a012",
+     "b": "a016",
+     "winner": "a012",
+     "loser": "a016",
+     "reason": "a012 gives concrete, transition-aware word caps and makes the 30-second film earn its time, while a016 leaves the opening's value and handoff timing unresolved.",
+     "survived": [
+      "room tone removed from the required silent opening"
+     ],
+     "scores": {
+      "a012": 93.5,
+      "a016": 74.5
+     },
+     "source": "judge"
+    }
+   ],
+   "bye": null,
+   "closed": true
+  },
+  {
+   "n": 3,
+   "alive": [
+    "a003",
+    "a009",
+    "a010",
+    "a012"
+   ],
+   "matches": [
+    {
+     "id": "r3-m01",
+     "a": "a012",
+     "b": "a010",
+     "winner": "a010",
+     "loser": "a012",
+     "reason": "a010 explicitly fixes the update cadence and names the dismissible \u20b92,000 deletion fee in speech, while a012 leaves the fee amount unnamed in its spoken pricing beat.",
+     "survived": [
+      "update cadence included in speech and UI",
+      "\u20b92,000 deletion fee named and dismissible"
+     ],
+     "scores": {
+      "a012": 86.0,
+      "a010": 87.5
+     },
+     "source": "judge"
+    },
+    {
+     "id": "r3-m02",
+     "a": "a009",
+     "b": "a003",
+     "winner": "a003",
+     "loser": "a009",
+     "reason": "a003 fixes the standalone pricing ambiguity and adds verified, actionable camera-exit and safety guidance, while a009 still lacks a concrete device-locking check.",
+     "survived": [
+      "a003: standalone answer explicitly says mock price and no payment"
+     ],
+     "scores": {
+      "a009": 73.0,
+      "a003": 91.5
+     },
+     "source": "judge"
+    }
+   ],
+   "bye": null,
+   "closed": true
+  },
+  {
+   "n": 4,
+   "alive": [
+    "a003",
+    "a010"
+   ],
+   "matches": [
+    {
+     "id": "r4-m01",
+     "a": "a003",
+     "b": "a010",
+     "winner": "a003",
+     "loser": "a010",
+     "reason": "a003 gives a concrete pending-permission race fix and covers the full safety and demo risks while a010 omits device-lock and film-safety checks.",
+     "survived": [
+      "camera pending-permission race flagged with stale-stream stop recommendation"
+     ],
+     "scores": {
+      "a003": 96.5,
+      "a010": 88.0
+     },
+     "source": "judge"
+    }
+   ],
+   "bye": null,
+   "closed": true
+  }
+ ],
+ "champion": "a003",
+ "final": null
+}

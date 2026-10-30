@@ -1,0 +1,14 @@
+{
+  "match": "r3-m02",
+  "scores": {
+    "a009": {"correctness": 8, "completeness": 8, "specificity": 8, "robustness": 4, "clarity": 9, "fatal": false},
+    "a003": {"correctness": 9, "completeness": 10, "specificity": 9, "robustness": 9, "clarity": 8, "fatal": false}
+  },
+  "winner": "a003",
+  "reason": "a003 fixes the standalone pricing ambiguity and adds verified, actionable camera-exit and safety guidance, while a009 still lacks a concrete device-locking check.",
+  "survived": ["a003: standalone answer explicitly says mock price and no payment"],
+  "standing": {
+    "a009": ["device-locking safety check is still absent from the actionable review"],
+    "a003": []
+  }
+}

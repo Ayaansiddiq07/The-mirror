@@ -1,0 +1,30 @@
+{
+  "match": "r1-m05",
+  "scores": {
+    "a002": {
+      "correctness": 9,
+      "completeness": 9,
+      "specificity": 9,
+      "robustness": 10,
+      "clarity": 8,
+      "fatal": false
+    },
+    "a010": {
+      "correctness": 9,
+      "completeness": 9,
+      "specificity": 10,
+      "robustness": 10,
+      "clarity": 9,
+      "fatal": false
+    }
+  },
+  "winner": "a010",
+  "reason": "a010 gives more immediately usable spoken wording and a tighter demo-to-close plan while fixing the silent-film attack.",
+  "survived": [
+    "Silent 30-second opening specified with no audio"
+  ],
+  "standing": {
+    "a002": [],
+    "a010": []
+  }
+}

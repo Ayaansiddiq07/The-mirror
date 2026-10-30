@@ -1,0 +1,11 @@
+{
+  "match": "r3-m01",
+  "scores": {
+    "a012": {"correctness": 9, "completeness": 9, "specificity": 9, "robustness": 7, "clarity": 9, "fatal": false},
+    "a010": {"correctness": 9, "completeness": 8, "specificity": 9, "robustness": 9, "clarity": 9, "fatal": false}
+  },
+  "winner": "a010",
+  "reason": "a010 explicitly fixes the update cadence and names the dismissible ₹2,000 deletion fee in speech, while a012 leaves the fee amount unnamed in its spoken pricing beat.",
+  "survived": ["update cadence included in speech and UI", "₹2,000 deletion fee named and dismissible"],
+  "standing": {"a012": ["spoken pricing beat does not name the ₹2,000 deletion fee"], "a010": []}
+}

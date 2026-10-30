@@ -1,0 +1,11 @@
+{
+  "match": "r2-m02",
+  "scores": {
+    "a010": {"correctness": 10, "completeness": 10, "specificity": 10, "robustness": 10, "clarity": 9, "fatal": false},
+    "a004": {"correctness": 9, "completeness": 10, "specificity": 9, "robustness": 10, "clarity": 9, "fatal": false}
+  },
+  "winner": "a010",
+  "reason": "Both solutions fix the attacks, but a010 gives exact handoff timing and more ready-to-say wording, including a precise :30 start for speech after the silent film.",
+  "survived": ["a004 attack: holds title through :30 and starts speech at :30"],
+  "standing": {"a010": [], "a004": []}
+}

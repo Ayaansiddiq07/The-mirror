@@ -1,0 +1,11 @@
+{
+  "match": "r1-m06",
+  "scores": {
+    "a014": {"correctness": 9, "completeness": 9, "specificity": 9, "robustness": 10, "clarity": 9, "fatal": false},
+    "a016": {"correctness": 9, "completeness": 10, "specificity": 10, "robustness": 10, "clarity": 8, "fatal": false}
+  },
+  "winner": "a016",
+  "reason": "a016 gives the team a complete timed, four-speaker script and concrete UI fixes while preserving all required satirical and safety details; a014 is clearer and tighter but less directly ready to rehearse.",
+  "survived": ["one-time first-run camera trial; repeat demo uses fallback"],
+  "standing": {"a014": [], "a016": []}
+}

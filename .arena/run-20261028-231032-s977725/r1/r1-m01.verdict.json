@@ -1,0 +1,11 @@
+{
+  "match": "r1-m01",
+  "scores": {
+    "a006": {"correctness": 9, "completeness": 9, "specificity": 9, "robustness": 7, "clarity": 9, "fatal": false},
+    "a004": {"correctness": 9, "completeness": 9, "specificity": 9, "robustness": 10, "clarity": 9, "fatal": false}
+  },
+  "winner": "a004",
+  "reason": "a004 resolves all three attacks, while a006 retains the unnecessarily exact 00:25 title cue and otherwise offers similar coverage.",
+  "survived": ["keeps the film within its fixed slot", "reframes the upgrades as pretend sales", "makes the title timing flexible"],
+  "standing": {"a006": ["Exact 00:25 title reveal remains over-prescriptive"], "a004": []}
+}
